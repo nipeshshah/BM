@@ -21,9 +21,9 @@ namespace BM4.Code
       }
     }
 
-    public static string UserId = "";
-    public static string TestUserId1 = "";
-    public static string TestUserId2 = "";
+    public static string UserId = "F8C46DEC-F2BC-46A2-AD78-41981227668A";
+    public static string TestUserId1 = "D4F6C157-E2BF-473E-82B4-977A2240D2AA";
+    public static string TestUserId2 = "62F729D9-A32D-4D9B-9034-AF910B9BB569";
 
     internal static string UserIdX(IPrincipal user, HttpSessionStateBase session)
     {
