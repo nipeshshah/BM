@@ -1,8 +1,7 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 
@@ -13,7 +12,7 @@ namespace BM4.Models
         [Key]
         public string UserId { get; set; }
 
-        [DisplayName("Select City")]
+        [DisplayName("Select Title")]
         public string Title { get; set; }
 
         [DisplayName("First Name")]
@@ -26,8 +25,7 @@ namespace BM4.Models
         public string LastName { get; set; }
 
         [DisplayName("Date of Birth")]
-    [Column(TypeName = "datetime2")]
-    public DateTime DateOfBirth { get; set; }
+        public DateTime DateOfBirth { get; set; }
 
         [DisplayName("Profile Picture")]
         public string ProfilePic { get; set; }

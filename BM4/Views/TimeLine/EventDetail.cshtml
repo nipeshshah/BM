@@ -1,0 +1,66 @@
+﻿@model BM4.Models.TimeLineDetailedModel
+
+@{
+    ViewBag.Title = "EventDetail";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<script type="text/javascript">
+    function SendFriendRequest(obj, UserID) {
+        $.ajax({
+            url: '/TimeLine/SendConnectRequest?FriendId=' + UserID,
+            method: 'get',
+            success: function (response) {
+                debugger;
+                $(obj).text(response);
+                $(obj).attr('disabled', 'true');
+            }
+
+        });
+    }
+
+</script>
+<h2>@Html.DisplayFor(model => model.Title)</h2>
+
+<div>
+    <h4>@Html.DisplayFor(model => model.Title)</h4>
+    <hr />
+    <h5>Connected Users</h5>
+    @foreach (var user in Model.Users.Where(t => t.IsConnected).OrderBy(t => t.Friend.Title))
+    {
+        <img height="100" width="100" src="@user.Pic" />
+        @Html.DisplayFor(modelItem => user.Friend.Title)<br />
+        @Html.DisplayTextFor(modelItem => user.IsConnected)<br />
+        foreach (var url in user.Urls)
+        {
+            <div>
+                @url.AppType : @url.AppUrl <br />
+            </div>
+        }
+    }
+
+    <h5>Not Connected Users</h5>
+    @foreach (var user in Model.Users.Where(t => !t.IsConnected).OrderBy(t => t.Friend.Title))
+    {
+        <img height="100" width="100" src="@user.Pic" />
+        @Html.DisplayFor(modelItem => user.Friend.Title)<br />
+        @Html.DisplayTextFor(modelItem => user.IsConnected)<br />
+
+
+        if (user.ConnectionStatus == "" || user.ConnectionStatus == null)
+        {
+            <button type="button" class="w3-button w3-theme-d1 w3-margin-bottom w3-right"
+                    onclick="SendFriendRequest(this, '@user.Friend.UserId')">
+                Connect
+            </button>
+        }
+        else
+        {
+            <button type="button" class="w3-button w3-theme-d1 w3-margin-bottom w3-right"
+                    disabled="true">
+                @Html.DisplayTextFor(m => user.ConnectionStatus)
+            </button>
+        }
+    }
+
+
+</div>

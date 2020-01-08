@@ -21,7 +21,11 @@ namespace BM4.Code
       }
     }
 
-    internal static string UserId(IPrincipal user, HttpSessionStateBase session)
+    public static string UserId = "";
+    public static string TestUserId1 = "";
+    public static string TestUserId2 = "";
+
+    internal static string UserIdX(IPrincipal user, HttpSessionStateBase session)
     {
       if(UserName(user) == string.Empty && session["USER"] == null)
       {

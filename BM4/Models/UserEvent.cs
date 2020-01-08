@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
@@ -29,6 +29,8 @@ namespace BM4.Models
         [DisplayName("Select Location")]
         public int LocationId { get; set; }
 
+        public virtual Location Location { get; set; }
+
         [Required]
         [DisplayName("Select Starting Date")]
         public DateTime StartingDate { get; set; }
@@ -40,5 +42,7 @@ namespace BM4.Models
         [Required]
         public string UserId { get; set; }
 
-  }
+        [ForeignKey("UserId")]
+        public virtual UserProfile User {get;set;}
+    }
 }

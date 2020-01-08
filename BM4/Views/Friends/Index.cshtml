@@ -1,0 +1,44 @@
+﻿@model IEnumerable<BM4.Models.FriendConnection>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    
+    @Html.ActionLink("Pending Requests", "Requests")
+</p>
+<table class="table">
+    <tr>
+        <th>&nbsp;</th>
+        <th>
+            @Html.DisplayNameFor(model => model.User2.Title)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ConnectedDate)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            <img src="@Html.DisplayFor(modelItem => item.User2.ProfilePic)" width="100" height="100" />
+            
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.User2.Title)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ConnectedDate)
+        </td>
+        <td>
+            <a href="/UserProfile/Public?Id=@item.User2.UserId">View Profile</a>
+        </td>
+    </tr>
+}
+
+</table>

@@ -1,4 +1,5 @@
-﻿using BM4.Models;
+using BM4.Code;
+using BM4.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,8 +10,74 @@ namespace BM4.Controllers
 {
     public class HomeController : Controller
     {
-        public ActionResult Index()
+        public ActionResult Index(bool? CreateTestData)
         {
+            if (CreateTestData.HasValue && CreateTestData.Value)
+            {
+                ApplicationDbContext context = new ApplicationDbContext();
+                context.UserEvents.Add(new UserEvent()
+                {
+                    LocationId = 13,
+                    StartingDate = new DateTime(2019, 3, 1),
+                    EndingDate = new DateTime(2019, 6, 1),
+                    UserId = Settings.TestUserId1
+                });
+
+                context.UserEvents.Add(new UserEvent()
+                {
+                    LocationId = 14,
+                    StartingDate = new DateTime(2019, 7, 1),
+                    EndingDate = new DateTime(2019, 10, 1),
+                    UserId = Settings.TestUserId1
+                });
+
+                context.UserEvents.Add(new UserEvent()
+                {
+                    LocationId = 15,
+                    StartingDate = new DateTime(2019, 11, 1),
+                    EndingDate = new DateTime(2020, 2, 1),
+                    UserId = Settings.TestUserId1
+                });
+
+                context.UserEvents.Add(new UserEvent()
+                {
+                    LocationId = 13,
+                    StartingDate = new DateTime(2019, 3, 1),
+                    EndingDate = new DateTime(2019, 6, 1),
+                    UserId = Settings.TestUserId2
+                });
+
+                context.UserEvents.Add(new UserEvent()
+                {
+                    LocationId = 14,
+                    StartingDate = new DateTime(2019, 7, 1),
+                    EndingDate = new DateTime(2019, 10, 1),
+                    UserId = Settings.TestUserId2
+                });
+
+                context.UserConnections.Add(new UserConnections()
+                {
+                    AppType = "FB",
+                    AppUrl = "http://FB.Test/TestUser1",
+                    UserId = Settings.TestUserId1
+                });
+
+                context.UserConnections.Add(new UserConnections()
+                {
+                    AppType = "TW",
+                    AppUrl = "http://TW.Test/TestUser1",
+                    UserId = Settings.TestUserId1
+                });
+
+                context.UserConnections.Add(new UserConnections()
+                {
+                    AppType = "FB",
+                    AppUrl = "http://FB.Test/TestUser2",
+                    UserId = Settings.TestUserId2
+                });
+
+                context.SaveChanges();
+            }
             ViewBag.Title = "Home Page";
 
             return View();
@@ -27,9 +94,9 @@ namespace BM4.Controllers
         {
             ApplicationDbContext context = new ApplicationDbContext();
 
-            if(locationType.LocationTypes == "1" || locationType.LocationTypes == "2")
+            if (locationType.LocationTypes == "1" || locationType.LocationTypes == "2")
             {
-                if(locationType.Standard.Length == 0)
+                if (locationType.Standard.Length == 0)
                 {
                     throw new Exception("Standard is required");
                 }
@@ -54,7 +121,7 @@ namespace BM4.Controllers
                     };
                     context.MainLocations.Add(mainLocation);
                 }
-                
+
                 foreach (string standard in standards)
                 {
                     Location location = new Location()

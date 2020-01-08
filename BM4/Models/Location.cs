@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 
@@ -12,6 +13,9 @@ namespace BM4.Models
         [Key]
         public int LocationId { get; set; }
 
+        public int MainLocationId { get; set; }
+
+        [ForeignKey("MainLocationId")]
         public virtual MainLocation MainLocation { get; set; }
         
         public string LocationTypes { get; set; }

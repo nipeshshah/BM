@@ -37,5 +37,7 @@ namespace BM4.Models
         public System.Data.Entity.DbSet<BM4.Models.UserEvent> UserEvents { get; set; }
                                           
         public System.Data.Entity.DbSet<BM4.Models.UserProfile> UserProfiles { get; set; }
+        public System.Data.Entity.DbSet<BM4.Models.UserConnections> UserConnections { get; set; }
+        public System.Data.Entity.DbSet<BM4.Models.FriendConnection> FriendConnections { get; set; }
     }
 }

@@ -180,11 +180,14 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Code\Constants.cs" />
     <Compile Include="Code\Settings.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\EventsController.cs" />
+    <Compile Include="Controllers\FriendsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\TimeLineController.cs" />
     <Compile Include="Controllers\UserProfileController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -203,12 +206,16 @@
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\FriendConnection.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\Location.cs" />
     <Compile Include="Models\LocationType.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\TimeLineViewModal.cs" />
+    <Compile Include="Models\UserConnections.cs" />
     <Compile Include="Models\UserEvent.cs" />
     <Compile Include="Models\UserProfile.cs" />
+    <Compile Include="Models\UserViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -272,6 +279,10 @@
     <Content Include="Views\Home\LocationType.cshtml" />
     <Content Include="Views\UserProfile\UpdateProfile.cshtml" />
     <Content Include="Views\Events\AllEvents.cshtml" />
+    <Content Include="Views\Friends\Index.cshtml" />
+    <Content Include="Views\Friends\Requests.cshtml" />
+    <Content Include="Views\TimeLine\EventDetail.cshtml" />
+    <Content Include="Views\TimeLine\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

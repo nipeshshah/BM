@@ -1,168 +1,168 @@
 @model BM4.Models.LocationType
 
 @{
-  ViewBag.Title = "LocationType";
-  Layout = "~/Views/Shared/_Layout.cshtml";
-  //Layout = null;
+    ViewBag.Title = "LocationType";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    //Layout = null;
 }
 
 <div class="w3-row-padding">
-  <div class="w3-col l12 m12">
-    <div class="w3-card w3-round w3-white">
-      <div class="w3-container w3-padding">
-        @using(Html.BeginForm())
-        {
-          @Html.AntiForgeryToken()
+    <div class="w3-col l12 m12">
+        <div class="w3-card w3-round w3-white">
+            <div class="w3-container w3-padding">
+                @using (Html.BeginForm())
+                {
+                    @Html.AntiForgeryToken()
 
 
-          <h4 class="w3-opacity">Create new location</h4>
-          <hr />
-          @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-          <p>
-            @Html.LabelFor(model => model.CitySearchbox, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-              @Html.EditorFor(model => model.CitySearchbox, new { htmlAttributes = new { @class = "w3-input w3-border w3-padding" } })
-              @Html.ValidationMessageFor(model => model.CitySearchbox, "", new { @class = "text-danger" })
+                    <h4 class="w3-opacity">Create new location</h4>
+                    <hr />
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    <p>
+                        @Html.LabelFor(model => model.CitySearchbox, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.CitySearchbox, new { htmlAttributes = new { @class = "w3-input w3-border w3-padding" } })
+                            @Html.ValidationMessageFor(model => model.CitySearchbox, "", new { @class = "text-danger" })
+                        </div>
+                    </p>
+
+                    <p>
+                        @Html.LabelFor(model => model.LocationTypes, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.DropDownList("LocationTypes", new List<SelectListItem>
+                {
+                           new SelectListItem{ Text="---Select---", Value = "-1"},
+                   new SelectListItem{ Text="School", Value = "1"},
+                   new SelectListItem{ Text="Higher School", Value = "2" },
+                   new SelectListItem{ Text="College", Value = "3" },
+                   new SelectListItem{ Text="Post-Graduation", Value = "4" },
+                   new SelectListItem{ Text="Job", Value = "5" },
+                   new SelectListItem{ Text="Tuition Classes", Value = "6" },
+                   new SelectListItem{ Text="Coaching Classes", Value = "7" },
+                   new SelectListItem{ Text="Computer Classes", Value = "8" }
+                }, new { @class = "w3-input w3-border w3-padding", onchange = "ChangeCategory()" })
+                        </div>
+                    </p>
+
+                    <section style="display:none" class="section school">
+                        <p>
+                            @Html.LabelFor(model => model.Standard, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.Standard, new { htmlAttributes = new { @class = "w3-input w3-border w3-padding" } })
+                                @Html.ValidationMessageFor(model => model.Standard, "", new { @class = "text-danger" })
+                            </div>
+                        </p>
+
+                        <p>
+                            @Html.LabelFor(model => model.SchoolName, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.SchoolName, new { htmlAttributes = new { @class = "w3-input w3-border w3-padding" } })
+                                @Html.ValidationMessageFor(model => model.SchoolName, "", new { @class = "text-danger" })
+                            </div>
+                        </p>
+
+                        <p>
+                            @Html.LabelFor(model => model.EducationBoard, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.EducationBoard, new { htmlAttributes = new { @class = "w3-input w3-border w3-padding" } })
+                                @Html.ValidationMessageFor(model => model.EducationBoard, "", new { @class = "text-danger" })
+                            </div>
+                        </p>
+                    </section>
+                    <section style="display:none" class="section college">
+                        <p>
+                            @Html.LabelFor(model => model.SemesterYear, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.SemesterYear, new { htmlAttributes = new { @class = "w3-input w3-border w3-padding" } })
+                                @Html.ValidationMessageFor(model => model.SemesterYear, "", new { @class = "text-danger" })
+                            </div>
+                        </p>
+
+                        <p>
+                            @Html.LabelFor(model => model.CourseFaculty, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.CourseFaculty, new { htmlAttributes = new { @class = "w3-input w3-border w3-padding" } })
+                                @Html.ValidationMessageFor(model => model.CourseFaculty, "", new { @class = "text-danger" })
+                            </div>
+                        </p>
+
+                        <p>
+                            @Html.LabelFor(model => model.College, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.College, new { htmlAttributes = new { @class = "w3-input w3-border w3-padding" } })
+                                @Html.ValidationMessageFor(model => model.College, "", new { @class = "text-danger" })
+                            </div>
+                        </p>
+
+                        <p>
+                            @Html.LabelFor(model => model.University, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.University, new { htmlAttributes = new { @class = "w3-input w3-border w3-padding" } })
+                                @Html.ValidationMessageFor(model => model.University, "", new { @class = "text-danger" })
+                            </div>
+                        </p>
+                    </section>
+                    <section style="display:none" class="section company">
+                        <p>
+                            @Html.LabelFor(model => model.Department, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.Department, new { htmlAttributes = new { @class = "w3-input w3-border w3-padding" } })
+                                @Html.ValidationMessageFor(model => model.Department, "", new { @class = "text-danger" })
+                            </div>
+                        </p>
+
+                        <p>
+                            @Html.LabelFor(model => model.Company, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.Company, new { htmlAttributes = new { @class = "w3-input w3-border w3-padding" } })
+                                @Html.ValidationMessageFor(model => model.Company, "", new { @class = "text-danger" })
+                            </div>
+                        </p>
+                    </section>
+                    <section style="display:none" class="section classes">
+                        <p>
+                            @Html.LabelFor(model => model.Batches, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.Batches, new { htmlAttributes = new { @class = "w3-input w3-border w3-padding" } })
+                                @Html.ValidationMessageFor(model => model.Batches, "", new { @class = "text-danger" })
+                            </div>
+                        </p>
+
+                        <p>
+                            @Html.LabelFor(model => model.Subject, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.Subject, new { htmlAttributes = new { @class = "w3-input w3-border w3-padding" } })
+                                @Html.ValidationMessageFor(model => model.Subject, "", new { @class = "text-danger" })
+                            </div>
+                        </p>
+
+                        <p>
+                            @Html.LabelFor(model => model.Classes, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.Classes, new { htmlAttributes = new { @class = "w3-input w3-border w3-padding" } })
+                                @Html.ValidationMessageFor(model => model.Classes, "", new { @class = "text-danger" })
+                            </div>
+                        </p>
+
+                        <p>
+                            @Html.LabelFor(model => model.Professor, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.Professor, new { htmlAttributes = new { @class = "w3-input w3-border w3-padding" } })
+                                @Html.ValidationMessageFor(model => model.Professor, "", new { @class = "text-danger" })
+                            </div>
+                        </p>
+                    </section>
+                    <p>
+                        <div class="col-md-offset-2 col-md-10">
+                            <input id="btnSubmit" style="display:none" type="submit" value="Create" class="w3-button w3-theme" />
+                        </div>
+                    </p>
+
+                }
+
             </div>
-          </p>
-
-          <p>
-            @Html.LabelFor(model => model.LocationTypes, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-              @Html.DropDownList("LocationTypes", new List<SelectListItem>
-  {
-             new SelectListItem{ Text="---Select---", Value = "-1"},
-     new SelectListItem{ Text="School", Value = "1"},
-     new SelectListItem{ Text="Higher School", Value = "2" },
-     new SelectListItem{ Text="College", Value = "3" },
-     new SelectListItem{ Text="Post-Graduation", Value = "4" },
-     new SelectListItem{ Text="Job", Value = "5" },
-     new SelectListItem{ Text="Tuition Classes", Value = "6" },
-     new SelectListItem{ Text="Coaching Classes", Value = "7" },
-     new SelectListItem{ Text="Computer Classes", Value = "8" }
-  }, new { @class = "w3-input w3-border w3-padding", onchange = "ChangeCategory()" })
-            </div>
-          </p>
-
-          <section style="display:none" class="section school">
-            <p>
-              @Html.LabelFor(model => model.Standard, htmlAttributes: new { @class = "control-label col-md-2" })
-              <div class="col-md-10">
-                @Html.EditorFor(model => model.Standard, new { htmlAttributes = new { @class = "w3-input w3-border w3-padding" } })
-                @Html.ValidationMessageFor(model => model.Standard, "", new { @class = "text-danger" })
-              </div>
-            </p>
-
-            <p>
-              @Html.LabelFor(model => model.SchoolName, htmlAttributes: new { @class = "control-label col-md-2" })
-              <div class="col-md-10">
-                @Html.EditorFor(model => model.SchoolName, new { htmlAttributes = new { @class = "w3-input w3-border w3-padding" } })
-                @Html.ValidationMessageFor(model => model.SchoolName, "", new { @class = "text-danger" })
-              </div>
-            </p>
-
-            <p>
-              @Html.LabelFor(model => model.EducationBoard, htmlAttributes: new { @class = "control-label col-md-2" })
-              <div class="col-md-10">
-                @Html.EditorFor(model => model.EducationBoard, new { htmlAttributes = new { @class = "w3-input w3-border w3-padding" } })
-                @Html.ValidationMessageFor(model => model.EducationBoard, "", new { @class = "text-danger" })
-              </div>
-            </p>
-          </section>
-          <section style="display:none" class="section college">
-            <p>
-              @Html.LabelFor(model => model.SemesterYear, htmlAttributes: new { @class = "control-label col-md-2" })
-              <div class="col-md-10">
-                @Html.EditorFor(model => model.SemesterYear, new { htmlAttributes = new { @class = "w3-input w3-border w3-padding" } })
-                @Html.ValidationMessageFor(model => model.SemesterYear, "", new { @class = "text-danger" })
-              </div>
-            </p>
-
-            <p>
-              @Html.LabelFor(model => model.CourseFaculty, htmlAttributes: new { @class = "control-label col-md-2" })
-              <div class="col-md-10">
-                @Html.EditorFor(model => model.CourseFaculty, new { htmlAttributes = new { @class = "w3-input w3-border w3-padding" } })
-                @Html.ValidationMessageFor(model => model.CourseFaculty, "", new { @class = "text-danger" })
-              </div>
-            </p>
-
-            <p>
-              @Html.LabelFor(model => model.College, htmlAttributes: new { @class = "control-label col-md-2" })
-              <div class="col-md-10">
-                @Html.EditorFor(model => model.College, new { htmlAttributes = new { @class = "w3-input w3-border w3-padding" } })
-                @Html.ValidationMessageFor(model => model.College, "", new { @class = "text-danger" })
-              </div>
-            </p>
-
-            <p>
-              @Html.LabelFor(model => model.University, htmlAttributes: new { @class = "control-label col-md-2" })
-              <div class="col-md-10">
-                @Html.EditorFor(model => model.University, new { htmlAttributes = new { @class = "w3-input w3-border w3-padding" } })
-                @Html.ValidationMessageFor(model => model.University, "", new { @class = "text-danger" })
-              </div>
-            </p>
-          </section>
-          <section style="display:none" class="section company">
-            <p>
-              @Html.LabelFor(model => model.Department, htmlAttributes: new { @class = "control-label col-md-2" })
-              <div class="col-md-10">
-                @Html.EditorFor(model => model.Department, new { htmlAttributes = new { @class = "w3-input w3-border w3-padding" } })
-                @Html.ValidationMessageFor(model => model.Department, "", new { @class = "text-danger" })
-              </div>
-            </p>
-
-            <p>
-              @Html.LabelFor(model => model.Company, htmlAttributes: new { @class = "control-label col-md-2" })
-              <div class="col-md-10">
-                @Html.EditorFor(model => model.Company, new { htmlAttributes = new { @class = "w3-input w3-border w3-padding" } })
-                @Html.ValidationMessageFor(model => model.Company, "", new { @class = "text-danger" })
-              </div>
-            </p>
-          </section>
-          <section style="display:none" class="section classes">
-            <p>
-              @Html.LabelFor(model => model.Batches, htmlAttributes: new { @class = "control-label col-md-2" })
-              <div class="col-md-10">
-                @Html.EditorFor(model => model.Batches, new { htmlAttributes = new { @class = "w3-input w3-border w3-padding" } })
-                @Html.ValidationMessageFor(model => model.Batches, "", new { @class = "text-danger" })
-              </div>
-            </p>
-
-            <p>
-              @Html.LabelFor(model => model.Subject, htmlAttributes: new { @class = "control-label col-md-2" })
-              <div class="col-md-10">
-                @Html.EditorFor(model => model.Subject, new { htmlAttributes = new { @class = "w3-input w3-border w3-padding" } })
-                @Html.ValidationMessageFor(model => model.Subject, "", new { @class = "text-danger" })
-              </div>
-            </p>
-
-            <p>
-              @Html.LabelFor(model => model.Classes, htmlAttributes: new { @class = "control-label col-md-2" })
-              <div class="col-md-10">
-                @Html.EditorFor(model => model.Classes, new { htmlAttributes = new { @class = "w3-input w3-border w3-padding" } })
-                @Html.ValidationMessageFor(model => model.Classes, "", new { @class = "text-danger" })
-              </div>
-            </p>
-
-            <p>
-              @Html.LabelFor(model => model.Professor, htmlAttributes: new { @class = "control-label col-md-2" })
-              <div class="col-md-10">
-                @Html.EditorFor(model => model.Professor, new { htmlAttributes = new { @class = "w3-input w3-border w3-padding" } })
-                @Html.ValidationMessageFor(model => model.Professor, "", new { @class = "text-danger" })
-              </div>
-            </p>
-          </section>
-          <p>
-            <div class="col-md-offset-2 col-md-10">
-              <input id="btnSubmit" style="display:none" type="submit" value="Create" class="w3-button w3-theme" />
-            </div>
-          </p>
-
-        }
-
-      </div>
+        </div>
     </div>
-  </div>
 </div>
 <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDf137fwygx37O4ipOhPBMx-hHS3fAqR7I&libraries=places"></script>>
 
@@ -177,28 +177,28 @@
     })
 
   });
-
-  function ChangeCategory() {
-    var selectedLocation = $('#LocationTypes :Selected').val();
-
-    $('.section').hide();
-    $('#btnSubmit').hide();
-    if (selectedLocation == "1" || selectedLocation == "2") {
-      $('.section.school').show();
-      $('#btnSubmit').show();
+   
+   function ChangeCategory() {
+        var selectedLocation = $('#LocationTypes :Selected').val();
+        
+        $('.section').hide();
+        $('#btnSubmit').hide();
+        if (selectedLocation == "1" || selectedLocation == "2") {
+            $('.section.school').show();
+            $('#btnSubmit').show();
+        }
+        else if (selectedLocation == "3" || selectedLocation == "4") {
+            $('.section.college').show();
+            $('#btnSubmit').show();
+        }
+        else if (selectedLocation == "5") {
+            $('.section.company').show();
+            $('#btnSubmit').show();
+        }
+        else if (selectedLocation == "6" || selectedLocation == "7" || selectedLocation == "8") {
+            $('.section.classes').show();
+            $('#btnSubmit').show();
+        }
     }
-    else if (selectedLocation == "3" || selectedLocation == "4") {
-      $('.section.college').show();
-      $('#btnSubmit').show();
-    }
-    else if (selectedLocation == "5") {
-      $('.section.company').show();
-      $('#btnSubmit').show();
-    }
-    else if (selectedLocation == "6" || selectedLocation == "7" || selectedLocation == "8") {
-      $('.section.classes').show();
-      $('#btnSubmit').show();
-    }
-  }
-
+    
 </script>
