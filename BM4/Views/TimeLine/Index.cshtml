@@ -1,35 +1,9 @@
-﻿@model BM4.Models.TimeLineViewModal
+@model BM4.Models.TimeLineViewModal
 
 @{
-    ViewBag.Title = "Index";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+  ViewBag.Title = "Index";
+  Layout = "~/Views/Shared/_Layout2.cshtml";
 }
-<style>
-    a {
-        text-decoration: none;
-        display: inline-block;
-        padding: 8px 16px;
-    }
-
-        a:hover {
-            background-color: #ddd;
-            color: black;
-        }
-
-    .previous {
-        background-color: #f1f1f1;
-        color: black;
-    }
-
-    .next {
-        background-color: #4CAF50;
-        color: white;
-    }
-
-    .round {
-        border-radius: 50%;
-    }
-</style>
 <script>
     function RedirectYear(run) {
         var year = @Model.currentYear;
@@ -47,236 +21,36 @@
         window.location = '/Timeline/Index?year=' + year;
     }
 </script>
-<style>
+<div class="section inset mt-3">
+  <div class="wide-block pt-2 pb-2 pl-2 pr-2 section-title large" style="text-align:center">
+    <span class="text-left" style="float:left" onclick="RedirectYear('prev')">
+      <i class="icon ion-md-arrow-round-back"></i>
+    </span>
+    Year @Html.DisplayFor(model => model.currentYear)
+    <span class="text-right" style="float:right" onclick="RedirectYear('next')">
+      <i class="icon ion-md-arrow-round-forward"></i>
+    </span>
 
-    .timeline {
-        --uiTimelineMainColor: var(--timelineMainColor, #222);
-        --uiTimelineSecondaryColor: var(--timelineSecondaryColor, #fff);
-        position: relative;
-        padding-top: 3rem;
-        padding-bottom: 3rem;
-    }
-
-        .timeline:before {
-            content: "";
-            width: 4px;
-            height: 100%;
-            background-color: var(--uiTimelineMainColor);
-            position: absolute;
-            top: 0;
-        }
-
-    .timeline__group {
-        position: relative;
-    }
-
-        .timeline__group:not(:first-of-type) {
-            margin-top: 4rem;
-        }
-
-    .timeline__year {
-        padding: .5rem 1.5rem;
-        color: var(--uiTimelineSecondaryColor);
-        background-color: var(--uiTimelineMainColor);
-        position: absolute;
-        left: 0;
-        top: 0;
-    }
-
-    .timeline__box {
-        position: relative;
-    }
-
-        .timeline__box:not(:last-of-type) {
-            margin-bottom: 30px;
-        }
-
-        .timeline__box:before {
-            content: "";
-            width: 100%;
-            height: 2px;
-            background-color: var(--uiTimelineMainColor);
-            position: absolute;
-            left: 0;
-            z-index: -1;
-        }
-
-    .timeline__date {
-        min-width: 65px;
-        position: absolute;
-        left: 0;
-        box-sizing: border-box;
-        padding: .5rem 1.5rem;
-        text-align: center;
-        background-color: var(--uiTimelineMainColor);
-        color: var(--uiTimelineSecondaryColor);
-    }
-
-    .timeline__day {
-        font-size: 2rem;
-        font-weight: 700;
-        display: block;
-    }
-
-    .timeline__month {
-        display: block;
-        font-size: .8em;
-        text-transform: uppercase;
-    }
-
-    .timeline__post {
-        padding: 1.5rem 2rem;
-        border-radius: 2px;
-        border-left: 3px solid #cec1aa;
-        box-shadow: 0 1px 3px 0 rgba(0, 0, 0, .12), 0 1px 2px 0 rgba(0, 0, 0, .24);
-        background-color: var(--uiTimelineSecondaryColor);
-    }
-
-    .timeline:before {
-        left: 0;
-    }
-
-    .timeline__box {
-        padding-left: 20px;
-        padding-top: 70px;
-    }
-
-        .timeline__box:before {
-            top: 90px;
-        }
-
-    .timeline__date {
-        top: 0;
-    }
-
-    .timeline {
-        --timelineMainColor: #957e56;
-        font-size: 16px;
-    }
-
-    /*
-    =====
-    DEMO
-    =====
-    */
-
-
-
-
-    p {
-        margin-top: 0;
-        margin-bottom: 1.5rem;
-        line-height: 1.5;
-    }
-
-        p:last-child {
-            margin-bottom: 0;
-        }
-
-    .page {
-        max-width: 800px;
-        padding: 10rem 2rem 3rem;
-        margin-left: auto;
-        margin-right: auto;
-        order: 1;
-    }
-
-    /*
-    =====
-    LinkedIn
-    =====
-    */
-
-    .linkedin {
-        background-color: #fff;
-        text-align: center;
-    }
-
-    .linkedin__container {
-        max-width: 1000px;
-        padding: 10px;
-        margin-left: auto;
-        margin-right: auto;
-    }
-
-    .linkedin__text {
-        margin-top: 0;
-        margin-bottom: 0;
-    }
-
-    .linkedin__link {
-        color: #ff5c5c;
-    }
-</style>
-<div class="w3-card w3-round w3-white">
-    <div class="w3-container">
-        <div class="w3-container w3-theme-dark w3-xlarge w3-center">
-            <span class="w3-left" onclick="RedirectYear('prev')">«</span>
-            Year @Html.DisplayFor(model => model.currentYear)
-            <span class="w3-right" onclick="RedirectYear('next')">»</span>
-        </div>
-        <div class="timeline">
-            <div class="timeline__group">
-                @foreach (var item in Model.months)
-                {
-                    <div class="timeline__box">
-                        <div class="timeline__date">
-                            <span class="timeline__day">@Html.DisplayFor(modelItem => item)</span>
-
-                        </div>
-                        @foreach (var events in Model.monthEvents.OrderBy(t => t.startDate))
-                        {
-                            if (events.IsInMonth(Model.currentYear, Constants.MONTHNAMESHORT.IndexOf(item.Split(' ')[0]) + 1))
-                            {
-                                <div class="timeline__post">
-                                    <div class="timeline__content">
-
-                                        <p>
-                                            @Html.DisplayFor(modelItem => events.location)<br />
-                                            <button type="button" class="w3-button w3-theme-d1 w3-margin-bottom w3-right"
-                                                    onclick="window.location='/TimeLine/EventDetail?Id=@events.locationId&year=@Model.currentYear&month=@(Constants.MONTHNAMESHORT.IndexOf(item.Split(' ')[0]) + 1)'"
-                                                    >
-                                            <i class="fa fa-thumbs-up"></i>  View</button>
-                                        </p>
-                                    </div>
-                                </div>
-                            }
-                        }
-                    </div>
-                }
-            </div>
-        </div>
-    </div>
-    <div class="w3-container" style="display:none" delete>
-
-        @foreach (var item in Model.months)
-        {
-            <h2><p><i class="fa fa-pencil fa-fw w3-margin-right w3-text-theme"></i> @Html.DisplayFor(modelItem => item)</p></h2>
-            foreach (var events in Model.monthEvents.OrderBy(t => t.startDate))
-            {
-                if (events.IsInMonth(Model.currentYear, Constants.MONTHNAMESHORT.IndexOf(item.Split(' ')[0]) + 1))
-                { @Html.DisplayFor(modelItem => events.location)<br />
-                <div class="w3-container w3-card w3-white w3-round w3-margin" style="display:none">
-                    <br>
-                    <img src="/w3images/avatar2.png" alt="Avatar" class="w3-left w3-circle w3-margin-right" style="width:60px">
-                    <span class="w3-right w3-opacity">1 min</span>
-                    <h6>@Html.DisplayFor(modelItem => events.location)</h6><br>
-                    <hr class="w3-clear">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-                    <div class="w3-row-padding" style="margin:0 -16px">
-                        <div class="w3-half">
-                            <img src="/w3images/lights.jpg" style="width:100%" alt="Northern Lights" class="w3-margin-bottom">
-                        </div>
-                        <div class="w3-half">
-                            <img src="/w3images/nature.jpg" style="width:100%" alt="Nature" class="w3-margin-bottom">
-                        </div>
-                    </div>
-                    <button type="button" class="w3-button w3-theme-d1 w3-margin-bottom"><i class="fa fa-thumbs-up"></i>  Like</button>
-                    <button type="button" class="w3-button w3-theme-d2 w3-margin-bottom"><i class="fa fa-comment"></i>  Comment</button>
-                </div>
-            }
-        }
-    }
-    </div>
+  </div>
 
 </div>
+
+@foreach(var item in Model.months)
+{
+  <div class="section inset mt-3">
+    <div class="section-title medium">@Html.DisplayFor(modelItem => item)</div>
+    <div class="wide-block pt-2 pb-2">
+      @foreach(var events in Model.monthEvents.OrderBy(t => t.startDate))
+      {
+        if(events.IsInMonth(Model.currentYear, BM4.Code.Constants.MONTHNAMESHORT.IndexOf(item.Split(' ')[0]) + 1))
+        {
+          <button style="float:right;" type="button" class="btn btn-icon btn-primary mr-1 mb-1" onclick="window.location='/TimeLine/EventDetail?Id=@events.locationId&year=@Model.currentYear&month=@(BM4.Code.Constants.MONTHNAMESHORT.IndexOf(item.Split(' ')[0]) + 1)'">
+            <i class="icon ion-md-more"></i>
+          </button>
+          <h4>@Html.DisplayFor(modelItem => events.location)</h4>
+          <h6 style="color:#8195A6">@Html.Raw(events.locationsubheading)</h6>
+        }
+      }
+    </div>
+  </div>
+}

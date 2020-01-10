@@ -275,6 +275,7 @@
     <Content Include="Views\Friends\Requests.cshtml" />
     <Content Include="Views\TimeLine\EventDetail.cshtml" />
     <Content Include="Views\TimeLine\Index.cshtml" />
+    <Content Include="Views\Shared\_Layout2.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

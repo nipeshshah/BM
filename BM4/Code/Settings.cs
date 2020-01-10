@@ -9,6 +9,12 @@ namespace BM4.Code
 {
   public class Settings
   {
+    //USer 1 "FD1FF0D9-F692-4284-A425-01A395B8EDB6"
+    //User 2 "32A0EE21-1670-4541-A083-E2AE4185166D"
+    public static string UserId = "32A0EE21-1670-4541-A083-E2AE4185166D";
+    public static string TestUserId1 = "FD1FF0D9-F692-4284-A425-01A395B8EDB6";
+    public static string TestUserId2 = "32A0EE21-1670-4541-A083-E2AE4185166D";
+  
     internal static string UserName(IPrincipal user)
     {
       if(user.Identity.IsAuthenticated)
@@ -20,11 +26,7 @@ namespace BM4.Code
         return string.Empty;
       }
     }
-
-    public static string UserId = "F8C46DEC-F2BC-46A2-AD78-41981227668A";
-    public static string TestUserId1 = "D4F6C157-E2BF-473E-82B4-977A2240D2AA";
-    public static string TestUserId2 = "62F729D9-A32D-4D9B-9034-AF910B9BB569";
-
+    
     internal static string UserIdX(IPrincipal user, HttpSessionStateBase session)
     {
       if(UserName(user) == string.Empty && session["USER"] == null)
