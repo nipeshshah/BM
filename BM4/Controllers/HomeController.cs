@@ -1,5 +1,4 @@
-using BM4.Code;
-using BM4.Models;
+﻿using BM4.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,95 +9,60 @@ namespace BM4.Controllers
 {
     public class HomeController : Controller
     {
-        public ActionResult Index(bool? CreateTestData)
+        public ActionResult Index()
         {
-            if (CreateTestData.HasValue && CreateTestData.Value)
+            if (User.Identity.IsAuthenticated)
             {
-                ApplicationDbContext context = new ApplicationDbContext();
-                context.UserEvents.Add(new UserEvent()
-                {
-                    LocationId = 13,
-                    StartingDate = new DateTime(2019, 3, 1),
-                    EndingDate = new DateTime(2019, 6, 1),
-                    UserId = Settings.TestUserId1
-                });
+                BM4.Code.CommonFunctions functions = new Code.CommonFunctions();
+                UserProfile profile = functions.CurrentUserProfile(User);
 
-                context.UserEvents.Add(new UserEvent()
-                {
-                    LocationId = 14,
-                    StartingDate = new DateTime(2019, 7, 1),
-                    EndingDate = new DateTime(2019, 10, 1),
-                    UserId = Settings.TestUserId1
-                });
-
-                context.UserEvents.Add(new UserEvent()
-                {
-                    LocationId = 15,
-                    StartingDate = new DateTime(2019, 11, 1),
-                    EndingDate = new DateTime(2020, 2, 1),
-                    UserId = Settings.TestUserId1
-                });
-
-                context.UserEvents.Add(new UserEvent()
-                {
-                    LocationId = 13,
-                    StartingDate = new DateTime(2019, 3, 1),
-                    EndingDate = new DateTime(2019, 6, 1),
-                    UserId = Settings.TestUserId2
-                });
-
-                context.UserEvents.Add(new UserEvent()
-                {
-                    LocationId = 14,
-                    StartingDate = new DateTime(2019, 7, 1),
-                    EndingDate = new DateTime(2019, 10, 1),
-                    UserId = Settings.TestUserId2
-                });
-
-                context.UserConnections.Add(new UserConnections()
-                {
-                    AppType = "FB",
-                    AppUrl = "http://FB.Test/TestUser1",
-                    UserId = Settings.TestUserId1
-                });
-
-                context.UserConnections.Add(new UserConnections()
-                {
-                    AppType = "TW",
-                    AppUrl = "http://TW.Test/TestUser1",
-                    UserId = Settings.TestUserId1
-                });
-
-                context.UserConnections.Add(new UserConnections()
-                {
-                    AppType = "FB",
-                    AppUrl = "http://FB.Test/TestUser2",
-                    UserId = Settings.TestUserId2
-                });
-
-                context.SaveChanges();
+                ViewBag.UserTitle = string.IsNullOrEmpty(profile.Title) ? profile.UserName : profile.Title;
+                ViewBag.ProfilePic = string.IsNullOrEmpty(profile.ProfilePic) ? "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSDgTNKTeE985pM29w_MVlLv6Q6zXuK8qHKq4O0pcB_aWH4JbQV&s" : profile.ProfilePic;
             }
-            ViewBag.Title = "Home Page";
-
+            else
+            {
+                return RedirectToAction("Login", "Account");
+            }
             return View();
         }
 
         [HttpGet]
         public ActionResult LocationType()
         {
-            return View();
+            if (User.Identity.IsAuthenticated)
+                return View();
+            else
+                return RedirectToAction("Login", "Account");
         }
 
         [HttpPost]
         public ActionResult LocationType(LocationType locationType)
         {
+            List<string> errors = new List<string>();
             ApplicationDbContext context = new ApplicationDbContext();
 
             if (locationType.LocationTypes == "1" || locationType.LocationTypes == "2")
             {
-                if (locationType.Standard.Length == 0)
+                if (locationType.Standard == null || locationType.Standard.Length == 0)
                 {
-                    throw new Exception("Standard is required");
+                    errors.Add("Standard(s) are Requred");                    
+                }
+                if(locationType.CitySearchbox == null || locationType.CitySearchbox.Length == 0)
+                {
+                    errors.Add("City is Requred");
+                }
+                if (locationType.SchoolName == null || locationType.SchoolName.Length == 0)
+                {
+                    errors.Add("School Name is Requred");
+                }
+                if (locationType.EducationBoard == null || locationType.EducationBoard.Length == 0)
+                {
+                    errors.Add("Education Board is Requred");
+                }
+                if (errors.Count > 0)
+                {
+                    ViewBag.Errors = errors;
+                    return View(locationType);
                 }
                 string[] standards = locationType.Standard.Split(",".ToCharArray(), StringSplitOptions.RemoveEmptyEntries);
 
@@ -136,9 +100,26 @@ namespace BM4.Controllers
             }
             else if (locationType.LocationTypes == "3" || locationType.LocationTypes == "4")
             {
-                if (locationType.SemesterYear.Length == 0)
+                if (locationType.SemesterYear == null || locationType.SemesterYear.Length == 0)
                 {
-                    throw new Exception("Semisters are required");
+                    errors.Add("Semester or Year is Requred");
+                }
+                if (locationType.CourseFaculty == null || locationType.CourseFaculty.Length == 0)
+                {
+                    errors.Add("Course/Faculty or Year is Requred");
+                }
+                if (locationType.College == null || locationType.College.Length == 0)
+                {
+                    errors.Add("College or Year is Requred");
+                }
+                if (locationType.University == null || locationType.University.Length == 0)
+                {
+                    errors.Add("University or Year is Requred");
+                }
+                if (errors.Count > 0)
+                {
+                    ViewBag.Errors = errors;
+                    return View(locationType);
                 }
                 string[] semisters = locationType.SemesterYear.Split(",".ToCharArray(), StringSplitOptions.RemoveEmptyEntries);
                 MainLocation mainLocation;
@@ -175,9 +156,15 @@ namespace BM4.Controllers
                 }
                 //context.LocationTypes.Add(locationType);
             }
-
-            int result = context.SaveChanges();
-            return RedirectToAction("Index");
+            if (context.GetValidationErrors().Count() > 0)
+            {
+                return View(locationType);
+            }
+            else
+            {
+                int result = context.SaveChanges();
+                return RedirectToAction("LocationType");
+            }
         }
     }
 }

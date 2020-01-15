@@ -13,7 +13,7 @@ namespace BM4.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "202001081808306_1"; }
+            get { return "202001151815263_1"; }
         }
         
         string IMigrationMetadata.Source

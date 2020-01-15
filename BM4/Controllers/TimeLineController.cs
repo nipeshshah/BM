@@ -24,8 +24,8 @@ namespace BM4.Controllers
 
       TimeLineViewModal modal = new TimeLineViewModal();
       ApplicationDbContext context = new ApplicationDbContext();
-      UserProfile user = context.UserProfiles.Where(t => t.UserId == Settings.UserId).First();
-
+      //UserProfile user = context.UserProfiles.Where(t => t.UserId == Settings.UserId(User)).First();
+      UserProfile user = context.UserProfiles.Where(t => t.UserName == User.Identity.Name).First();
       modal.years = new List<int>();
       for(int i = user.DateOfBirth.Year; i <= DateTime.Now.Year; i++)
       {
@@ -74,10 +74,10 @@ namespace BM4.Controllers
         .Select(x => new UserViewModel
         {
           Friend = x.User,
-          IsConnected = (context.FriendConnections.Count(t => t.User1.UserId == Settings.UserId && t.User2.UserId == x.User.UserId && t.Status == "Approved") == 1),
+          IsConnected = (context.FriendConnections.Count(t => t.User1.UserId == Settings.UserId(User) && t.User2.UserId == x.User.UserId && t.Status == "Approved") == 1),
           Urls = context.UserConnections.Where(t => t.UserId == x.User.UserId),
           Pic = x.User.ProfilePic,
-          ConnectionStatus = context.FriendConnections.FirstOrDefault(t => t.User1.UserId == Settings.UserId && t.User2.UserId == x.User.UserId).Status
+          ConnectionStatus = context.FriendConnections.FirstOrDefault(t => t.User1.UserId == Settings.UserId(User) && t.User2.UserId == x.User.UserId).Status
         }).ToList();
       return View(model);
     }
@@ -86,11 +86,11 @@ namespace BM4.Controllers
     public JsonResult SendConnectRequest(string FriendId)
     {
       ApplicationDbContext context = new ApplicationDbContext();
-      if(context.FriendConnections.Count(t => t.UserId1 == Settings.UserId && t.UserId2 == FriendId) == 0)
+      if(context.FriendConnections.Count(t => t.UserId1 == Settings.UserId(User) && t.UserId2 == FriendId) == 0)
       {
         context.FriendConnections.Add(new FriendConnection()
         {
-          UserId1 = Settings.UserId,
+          UserId1 = Settings.UserId(User),
           UserId2 = FriendId,
           Status = "Pending",
           ConnectedDate = DateTime.Now

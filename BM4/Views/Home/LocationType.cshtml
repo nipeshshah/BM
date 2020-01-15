@@ -2,8 +2,9 @@
 
 @{
     ViewBag.Title = "Create New Location";
-    Layout = "~/Views/Shared/_Layout2.cshtml";
+    Layout = "~/Views/Shared/_Layout.cshtml";
     //Layout = null;
+    List<String> Errors = ViewBag.Errors != null ? ViewBag.Errors : new List<string>();
 }
 
 <div class="section full mb-2">
@@ -13,7 +14,7 @@
             {
                 @Html.AntiForgeryToken()
 
-
+                @Html.Raw(string.Join("<br/>", Errors))
 
                 @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                 <div class="form-group basic">
@@ -30,7 +31,7 @@
                     <div class="input-wrapper">
                         @Html.LabelFor(model => model.LocationTypes)
                         <div class="col-md-10">
-                            @Html.DropDownList("LocationTypes", new List<SelectListItem>
+                            @Html.DropDownListFor(model => model.LocationTypes , new List<SelectListItem>
                 {
                            new SelectListItem{ Text="---Select---", Value = "-1"},
                    new SelectListItem{ Text="School", Value = "1"},
@@ -186,6 +187,9 @@
                     </div>
                 </section>
 
+                <Script>
+
+                </Script>
 
                 <div class="form-group basic">
                     <div class="input-wrapper">
@@ -199,29 +203,36 @@
         </div>
     </div>
 </div>
-<script>
-   
-    function ChangeCategory() {
-        var selectedLocation = $('#LocationTypes :Selected').val();
+@section scripts {
+    <script>
 
-        $('.sectionBlock').hide();
-        $('#btnSubmit').hide();
-        if (selectedLocation == "1" || selectedLocation == "2") {
-            $('.sectionBlock.school').show();
-            $('#btnSubmit').show();
-        }
-        else if (selectedLocation == "3" || selectedLocation == "4") {
-            $('.sectionBlock.college').show();
-            $('#btnSubmit').show();
-        }
-        else if (selectedLocation == "5") {
-            $('.sectionBlock.company').show();
-            $('#btnSubmit').show();
-        }
-        else if (selectedLocation == "6" || selectedLocation == "7" || selectedLocation == "8") {
-            $('.sectionBlock.classes').show();
-            $('#btnSubmit').show();
-        }
-    }
+        $(document).ready(function () {
+            if ($('#LocationTypes :Selected').val() != '-1')
+                $('#LocationTypes').change();
+        });
 
-</script>
+        function ChangeCategory() {
+            var selectedLocation = $('#LocationTypes :Selected').val();
+
+            $('.sectionBlock').hide();
+            $('#btnSubmit').hide();
+            if (selectedLocation == "1" || selectedLocation == "2") {
+                $('.sectionBlock.school').show();
+                $('#btnSubmit').show();
+            }
+            else if (selectedLocation == "3" || selectedLocation == "4") {
+                $('.sectionBlock.college').show();
+                $('#btnSubmit').show();
+            }
+            else if (selectedLocation == "5") {
+                $('.sectionBlock.company').show();
+                $('#btnSubmit').show();
+            }
+            else if (selectedLocation == "6" || selectedLocation == "7" || selectedLocation == "8") {
+                $('.sectionBlock.classes').show();
+                $('#btnSubmit').show();
+            }
+        }
+
+    </script>
+}

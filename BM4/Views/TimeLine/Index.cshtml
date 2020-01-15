@@ -1,9 +1,10 @@
-@model BM4.Models.TimeLineViewModal
+﻿@model BM4.Models.TimeLineViewModal
 
 @{
-  ViewBag.Title = "Index";
-  Layout = "~/Views/Shared/_Layout2.cshtml";
+    ViewBag.Title = "Time Line";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
+
 <script>
     function RedirectYear(run) {
         var year = @Model.currentYear;
@@ -21,36 +22,67 @@
         window.location = '/Timeline/Index?year=' + year;
     }
 </script>
-<div class="section inset mt-3">
-  <div class="wide-block pt-2 pb-2 pl-2 pr-2 section-title large" style="text-align:center">
-    <span class="text-left" style="float:left" onclick="RedirectYear('prev')">
-      <i class="icon ion-md-arrow-round-back"></i>
-    </span>
-    Year @Html.DisplayFor(model => model.currentYear)
-    <span class="text-right" style="float:right" onclick="RedirectYear('next')">
-      <i class="icon ion-md-arrow-round-forward"></i>
-    </span>
 
-  </div>
+
+<div class="section inset mt-3">
+    <div class="wide-block pt-2 pb-2 pl-2 pr-2 section-title large" style="text-align:center">
+        <span class="text-left" style="float:left" onclick="RedirectYear('prev')">
+            <i class="icon ion-md-arrow-round-back"></i>
+        </span>
+        Year @Html.DisplayFor(model => model.currentYear)
+        <span class="text-right" style="float:right" onclick="RedirectYear('next')">
+            <i class="icon ion-md-arrow-round-forward"></i>
+        </span>
+
+    </div>
 
 </div>
 
-@foreach(var item in Model.months)
-{
-  <div class="section inset mt-3">
-    <div class="section-title medium">@Html.DisplayFor(modelItem => item)</div>
-    <div class="wide-block pt-2 pb-2">
-      @foreach(var events in Model.monthEvents.OrderBy(t => t.startDate))
-      {
-        if(events.IsInMonth(Model.currentYear, BM4.Code.Constants.MONTHNAMESHORT.IndexOf(item.Split(' ')[0]) + 1))
-        {
-          <button style="float:right;" type="button" class="btn btn-icon btn-primary mr-1 mb-1" onclick="window.location='/TimeLine/EventDetail?Id=@events.locationId&year=@Model.currentYear&month=@(BM4.Code.Constants.MONTHNAMESHORT.IndexOf(item.Split(' ')[0]) + 1)'">
-            <i class="icon ion-md-more"></i>
-          </button>
-          <h4>@Html.DisplayFor(modelItem => events.location)</h4>
-          <h6 style="color:#8195A6">@Html.Raw(events.locationsubheading)</h6>
-        }
-      }
+<div class="section full mt-2 mb-2">
+    <div class="wide-block">
+        <!-- timeline -->
+        <div class="timeline timed">
+            @foreach (var item in Model.months)
+            {
+                <div class="item">
+                    <span class="time">@Html.DisplayFor(modelItem => item)</span>
+                    <div class="dot"></div>
+                    <div class="content">
+                        @{bool hasEvents = false; }
+                        @foreach (var events in Model.monthEvents.OrderBy(t => t.startDate))
+                        {
+                            if (events.IsInMonth(Model.currentYear, Constants.MONTHNAMESHORT.IndexOf(item.Split(' ')[0]) + 1))
+                            {
+                                hasEvents = true;
+                                <button style="float:right;" type="button" class="btn btn-icon btn-primary mr-1 mb-1" onclick="window.location='/TimeLine/EventDetail?Id=@events.locationId&year=@Model.currentYear&month=@(Constants.MONTHNAMESHORT.IndexOf(item.Split(' ')[0]) + 1)'">
+                                    <i class="icon ion-md-more"></i>
+                                </button>
+                                <h4>@Html.DisplayFor(modelItem => events.location)</h4>
+                                <div class="text">@Html.Raw(events.locationsubheading)</div>
+                            }
+                        }
+                        @if(!hasEvents)
+                        {
+                        <button style="float:right;" type="button" class="btn btn-icon btn-primary mr-1 mb-1" onclick="window.location='/Events/Index'">
+                            <i class="icon ion-md-add"></i>
+                        </button>
+                        <h4>No Current Events</h4>
+                        <div class="text">Please add some event and connect with your batchmates</div>
+                        }
+                    </div>
+                </div>
+            }
+            @*<div class="item">
+                    <span class="time">05:00 PM</span>
+                    <div class="dot"></div>
+                    <div class="content">
+                        <h4 class="title">Call John</h4>
+                        <div class="text">Talk about the project</div>
+                    </div>
+                </div>
+            *@
+        </div>
+        <!-- * timeline -->
     </div>
-  </div>
-}
+
+</div>

@@ -1,0 +1,41 @@
+﻿@model IEnumerable<BM4.Models.UserEventViewModel>
+
+@{
+                /**/
+
+                ViewBag.Title = "View All Events";
+                Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@foreach (dynamic item in Model)
+{
+    <div class="section mt-2">
+        <div class="card">
+            <div class="card-header">
+                From @item.StartingDate.ToString("MMM yyyy") to @item.EndingDate.ToString("MMM yyyy")
+                <button style="float:right;" type="button" class="btn btn-icon btn-primary mr-1 mb-1" 
+                        onclick="window.location='/Events/DeleteEvent?Id=@item.EventId'">
+                    <i class="icon ion-md-trash"></i>
+                </button>
+            </div>
+            <div class="card-body">
+                <h5 class="card-title">
+                    @Html.Raw(item.Location1), @Html.Raw(item.Location2)
+                            </h5>
+                <p class="card-text">
+                    @Html.Raw(item.Location3), @Html.Raw(item.Location4)
+                            </p>                
+            </div>
+            <div class="card-footer text-right">
+                <a href="/Friends" class="btn-link text-right">View Friends</a>
+            </div>
+        </div>
+    </div>
+   
+    <div>
+        <br />
+        <br />
+        <br />
+
+    </div>
+}

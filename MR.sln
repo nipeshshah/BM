@@ -5,6 +5,8 @@ VisualStudioVersion = 15.0.28307.960
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BM4", "BM4\BM4.csproj", "{FAFDB924-5417-4CD8-BED0-F4F805B83920}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApplication1", "WebApplication1\WebApplication1.csproj", "{C0FF20C3-25F8-4409-BAA6-F7255330C632}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Android = Debug|Android
@@ -45,6 +47,30 @@ Global
 		{FAFDB924-5417-4CD8-BED0-F4F805B83920}.Release|Windows-x64.Build.0 = Release|Any CPU
 		{FAFDB924-5417-4CD8-BED0-F4F805B83920}.Release|Windows-x86.ActiveCfg = Release|Any CPU
 		{FAFDB924-5417-4CD8-BED0-F4F805B83920}.Release|Windows-x86.Build.0 = Release|Any CPU
+		{C0FF20C3-25F8-4409-BAA6-F7255330C632}.Debug|Android.ActiveCfg = Debug|Any CPU
+		{C0FF20C3-25F8-4409-BAA6-F7255330C632}.Debug|Android.Build.0 = Debug|Any CPU
+		{C0FF20C3-25F8-4409-BAA6-F7255330C632}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C0FF20C3-25F8-4409-BAA6-F7255330C632}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C0FF20C3-25F8-4409-BAA6-F7255330C632}.Debug|iOS.ActiveCfg = Debug|Any CPU
+		{C0FF20C3-25F8-4409-BAA6-F7255330C632}.Debug|iOS.Build.0 = Debug|Any CPU
+		{C0FF20C3-25F8-4409-BAA6-F7255330C632}.Debug|Windows-ARM.ActiveCfg = Debug|Any CPU
+		{C0FF20C3-25F8-4409-BAA6-F7255330C632}.Debug|Windows-ARM.Build.0 = Debug|Any CPU
+		{C0FF20C3-25F8-4409-BAA6-F7255330C632}.Debug|Windows-x64.ActiveCfg = Debug|Any CPU
+		{C0FF20C3-25F8-4409-BAA6-F7255330C632}.Debug|Windows-x64.Build.0 = Debug|Any CPU
+		{C0FF20C3-25F8-4409-BAA6-F7255330C632}.Debug|Windows-x86.ActiveCfg = Debug|Any CPU
+		{C0FF20C3-25F8-4409-BAA6-F7255330C632}.Debug|Windows-x86.Build.0 = Debug|Any CPU
+		{C0FF20C3-25F8-4409-BAA6-F7255330C632}.Release|Android.ActiveCfg = Release|Any CPU
+		{C0FF20C3-25F8-4409-BAA6-F7255330C632}.Release|Android.Build.0 = Release|Any CPU
+		{C0FF20C3-25F8-4409-BAA6-F7255330C632}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C0FF20C3-25F8-4409-BAA6-F7255330C632}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C0FF20C3-25F8-4409-BAA6-F7255330C632}.Release|iOS.ActiveCfg = Release|Any CPU
+		{C0FF20C3-25F8-4409-BAA6-F7255330C632}.Release|iOS.Build.0 = Release|Any CPU
+		{C0FF20C3-25F8-4409-BAA6-F7255330C632}.Release|Windows-ARM.ActiveCfg = Release|Any CPU
+		{C0FF20C3-25F8-4409-BAA6-F7255330C632}.Release|Windows-ARM.Build.0 = Release|Any CPU
+		{C0FF20C3-25F8-4409-BAA6-F7255330C632}.Release|Windows-x64.ActiveCfg = Release|Any CPU
+		{C0FF20C3-25F8-4409-BAA6-F7255330C632}.Release|Windows-x64.Build.0 = Release|Any CPU
+		{C0FF20C3-25F8-4409-BAA6-F7255330C632}.Release|Windows-x86.ActiveCfg = Release|Any CPU
+		{C0FF20C3-25F8-4409-BAA6-F7255330C632}.Release|Windows-x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

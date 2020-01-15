@@ -1,107 +1,122 @@
 ﻿@model BM4.Models.UserEvent
 
 @{
-    ViewBag.Title = "Index";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+                /**/
+
+                ViewBag.Title = "Create new Event";
+                Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<script type="text/javascript">
 
-    $(document).ready(function () {
-
-        $("#StartingDate").datepicker({
-            dateFormat: "MM yy",
-            changeMonth: true,
-            changeYear: true
-        });
-        $("#EndingDate").datepicker({
-            dateFormat: "MM yy",
-            changeMonth: true,
-            changeYear: true
-        });
-
-        $('#City').change(function () {
-            $.ajax({
-                type: "post",
-                url: "/Events/GetLocations",
-                data: { cityName: $('#City').val() },
-                datatype: "json",
-                traditional: true,
-                success: function (data) {
-                    var loc = "<select id='LocationId'>";
-                    loc = loc + '<option value="">--Select--</option>';
-                    for (var i = 0; i < data.length; i++)
-                    {
-                        loc = loc + '<option value=' + data[i].LocationId + '>' + data[i].Text1 + '</option>';
-                    }
-                    loc = loc + '</select>';
-                    $('#LocationId').html(loc);
-                }
+@section Scripts {
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#StartingDate").datepicker({
+                dateFormat: "MM yy",
+                changeMonth: true,
+                changeYear: true
             });
+            $("#EndingDate").datepicker({
+                dateFormat: "MM yy",
+                changeMonth: true,
+                changeYear: true
+            });
+
+            $('#CityId').change(function () {
+                $.ajax({
+                    type: "post",
+                    url: "/Events/GetLocations",
+                    data: { cityName: $('#CityId').val() },
+                    datatype: "json",
+                    traditional: true,
+                    success: function (data) {
+                        var loc = "<select id='LocationId'>";
+                        loc = loc + '<option value="">--Select--</option>';
+                        for (var i = 0; i < data.length; i++) {
+                            loc = loc + '<option value=' + data[i].LocationId + '>' + data[i].Text1 + '</option>';
+                        }
+                        loc = loc + '</select>';
+                        $('#LocationId').html(loc);
+                        var selectedLocationId = '@(Model != null ? Model.LocationId.ToString() : "")';
+                        $('#LocationId').val(selectedLocationId);
+                    }
+                });
+            });
+
+            if ($('#CityId :Selected').val() != "") {
+                $('#CityId').change();
+            }
         });
-    });
-</script>
+    </script>
+}
 
 
-<div class="w3-row-padding">
-    <div class="w3-col l12 m12">
-        <div class="w3-card w3-round w3-white">
-            <div class="w3-container w3-padding">
-                @using (Html.BeginForm())
-                {
-                    @Html.AntiForgeryToken()
+<div class="section full mb-2">
+    <div class="wide-block pb-1 pt-1">
+        <div class="w3-container w3-padding">
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
 
+                @Html.ValidationSummary(false, "", new { @class = "text-danger" })
 
-                    <h4 class="w3-opacity">Create new Event</h4>
-                    <hr />
-                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                    <p>
+                //@Html.Raw(string.Join("<br/>", ""))
+
+                <div class="form-group basic">
+                    <div class="input-wrapper">
                         @Html.LabelFor(model => model.CityId, htmlAttributes: new { @class = "control-label col-md-2" })
                         <div class="col-md-10">
-                            @Html.DropDownList("City", (IEnumerable<SelectListItem>)ViewData["City"], "--Select--", new { @class = "w3-input w3-border w3-padding" })
-                            @*@Html.EditorFor(model => model.City, new { htmlAttributes = new { @class = "w3-input w3-border w3-padding" } })*@
+                            @Html.DropDownListFor(model => model.CityId, (SelectList)ViewData["City"], "--Select--", new { @class = "form-control" })
+                            @*@Html.EditorFor(model => model.City, new { htmlAttributes = new { @class = "form-control" } })*@
                             @Html.ValidationMessageFor(model => model.CityId, "", new { @class = "text-danger" })
                         </div>
-                    </p>
+                    </div>
+                </div>
 
-                    <p>
+                <div class="form-group basic">
+                    <div class="input-wrapper">
                         @Html.LabelFor(model => model.LocationId, htmlAttributes: new { @class = "control-label col-md-2" })
                         <div class="col-md-10">
 
-                            @Html.DropDownList("LocationId", (IEnumerable<SelectListItem>) new List<SelectListItem>(), "--Select--" , new { @class = "w3-input w3-border w3-padding" })
+                            @Html.DropDownListFor(model => model.LocationId, (IEnumerable<SelectListItem>)new List<SelectListItem>(), "--Select--", new { @class = "form-control" })
 
                             @*@Html.DropDownListFor(x => x.LocationNames, new List<SelectListItem>(), "--Select--", new { @id = "ddlDistrict" });*@
 
-                            @*@Html.EditorFor(model => model.LocationId, new { htmlAttributes = new { @class = "w3-input w3-border w3-padding" } })*@
+                            @*@Html.EditorFor(model => model.LocationId, new { htmlAttributes = new { @class = "form-control" } })*@
                             @Html.ValidationMessageFor(model => model.LocationId, "", new { @class = "text-danger" })
                         </div>
-                    </p>
+                    </div>
+                </div>
 
-                    <p>
+                <div class="form-group basic">
+                    <div class="input-wrapper">
                         @Html.LabelFor(model => model.StartingDate, htmlAttributes: new { @class = "control-label col-md-2" })
                         <div class="col-md-10">
-                            @Html.EditorFor(model => model.StartingDate, new { htmlAttributes = new { @readonly = "true", @class = "w3-input w3-border w3-padding" } })
+                            @Html.EditorFor(model => model.StartingDate, new { htmlAttributes = new { @readonly = "true", @class = "form-control" } })
                             @Html.ValidationMessageFor(model => model.StartingDate, "", new { @class = "text-danger" })
                         </div>
-                    </p>
+                    </div>
+                </div>
 
-                    <p>
+                <div class="form-group basic">
+                    <div class="input-wrapper">
                         @Html.LabelFor(model => model.EndingDate, htmlAttributes: new { @class = "control-label col-md-2" })
                         <div class="col-md-10">
-                            @Html.EditorFor(model => model.EndingDate, new { htmlAttributes = new { @class = "w3-input w3-border w3-padding" } })
+                            @Html.EditorFor(model => model.EndingDate, new { htmlAttributes = new { @class = "form-control", @autocomplete = "off" } })
                             @Html.ValidationMessageFor(model => model.EndingDate, "", new { @class = "text-danger" })
                         </div>
-                    </p>
+                    </div>
+                </div>
 
-                    <p>
+                <div class="form-group basic">
+                    <div class="input-wrapper">
                         <div class="col-md-offset-2 col-md-10">
-                            <input type="submit" value="Create" class="btn btn-default" />
+                            <input type="submit" value="Create" class="btn btn-primary btn-block" />
                         </div>
-                    </p>
-
-                }
-
-            </div>
+                    </div>
+                </div>
+            }
         </div>
     </div>
 </div>
+

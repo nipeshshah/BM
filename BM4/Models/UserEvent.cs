@@ -11,11 +11,11 @@ namespace BM4.Models
 {
     public class UserEvent
     {
-        [NotMapped]
-        public IList<SelectListItem> CityNames { get; set; }
+        //[NotMapped]
+        //public IList<SelectListItem> CityNames { get; set; }
 
-        [NotMapped]
-        public IList<SelectListItem> LocationNames { get; set; }
+        //[NotMapped]
+        //public IList<SelectListItem> LocationNames { get; set; }
 
         [Key]
         public int UserEventId { get; set; }
@@ -23,7 +23,7 @@ namespace BM4.Models
         [Required]
         [NotMapped]
         [DisplayName("Select City")]
-        public int CityId { get; set; }
+        public string CityId { get; set; }
 
         [Required]
         [DisplayName("Select Location")]

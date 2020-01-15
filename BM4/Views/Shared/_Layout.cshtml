@@ -1,320 +1,200 @@
 ﻿<!DOCTYPE html>
+
 <html>
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-    @*<link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-blue-grey.css">*@
-    <style>
-        .w3-theme-l5 {
-            color: #000 !important;
-            background-color: #fefefd !important
-        }
-
-        .w3-theme-l4 {
-            color: #000 !important;
-            background-color: #fcfbfa !important
-        }
-
-        .w3-theme-l3 {
-            color: #000 !important;
-            background-color: #f9f7f5 !important
-        }
-
-        .w3-theme-l2 {
-            color: #000 !important;
-            background-color: #f6f4ef !important
-        }
-
-        .w3-theme-l1 {
-            color: #000 !important;
-            background-color: #f3f0ea !important
-        }
-
-        .w3-theme-d1 {
-            color: #000 !important;
-            background-color: #dfd6c7 !important
-        }
-
-        .w3-theme-d2 {
-            color: #000 !important;
-            background-color: #cec1aa !important
-        }
-
-        .w3-theme-d3 {
-            color: #000 !important;
-            background-color: #bdab8c !important
-        }
-
-        .w3-theme-d4 {
-            color: #fff !important;
-            background-color: #ac956e !important
-        }
-
-        .w3-theme-d5 {
-            color: #fff !important;
-            background-color: #957e56 !important
-        }
-
-        .w3-theme-light {
-            color: #000 !important;
-            background-color: #fefefd !important
-        }
-
-        .w3-theme-dark {
-            color: #fff !important;
-            background-color: #957e56 !important
-        }
-
-        .w3-theme-action {
-            color: #fff !important;
-            background-color: #957e56 !important
-        }
-
-        .w3-theme {
-            color: #000 !important;
-            background-color: #f0ece5 !important
-        }
-
-        .w3-text-theme {
-            color: #f0ece5 !important
-        }
-
-        .w3-border-theme {
-            border-color: #f0ece5 !important
-        }
-
-        .w3-hover-theme:hover {
-            color: #000 !important;
-            background-color: #f0ece5 !important
-        }
-
-        .w3-hover-text-theme:hover {
-            color: #f0ece5 !important
-        }
-
-        .w3-hover-border-theme:hover {
-            border-color: #f0ece5 !important
-        }
-
-        html {
-            font-size: 55%;
-        }
-
-
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Open Sans, Ubuntu, Fira Sans, Helvetica Neue, sans-serif;
-            font-size: 1.6rem;
-            color: #222;
-            background-color: #f0f0f0;
-            margin: 0;
-            -webkit-overflow-scrolling: touch;
-            overflow-y: scroll;
-            display: flex;
-            flex-direction: column;
-        }
-    </style>
-    <script src="~/Scripts/jquery-3.3.1.js"></script>
-    <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Open+Sans'>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <meta name="viewport" content="width=device-width" />
+    <title>BM: @ViewBag.Title</title>
+    <link rel="stylesheet" href="https://egemem.com/theme/mobilekit/view/dark/assets/css/style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Mobilekit HTML Mobile UI Kit">
+    <meta name="keywords" content="bootstrap, mobile template, cordova, phonegap, mobile, html, responsive" />
+    <link rel="apple-touch-icon" sizes="180x180" href="https://egemem.com/theme/mobilekit/view/dark/assets/img/apple-touch-icon.png">
+    <link rel="icon" type="image/png" href="https://egemem.com/theme/mobilekit/view/dark/assets/img/favicon.png" sizes="32x32">
+    <link rel="shortcut icon" href="https://egemem.com/theme/mobilekit/view/dark/assets/img/favicon.png">
     <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <style>
-        html, body, h1, h2, h3, h4, h5 {
-            font-family: "Open Sans", sans-serif
+        option {
+            color: black;
         }
     </style>
 </head>
-<body class="w3-theme-l5">
-
-    <!-- Navbar -->
-    <div class="w3-top">
-        <div class="w3-bar w3-theme-d2 w3-left-align w3-large">
-            <a class="w3-bar-item w3-button w3-hide-medium w3-hide-large w3-right w3-padding-large w3-hover-white w3-large w3-theme-d2" href="javascript:void(0);" onclick="openNav()"><i class="fa fa-bars"></i></a>
-            <a href="#" class="w3-bar-item w3-button w3-padding-large w3-theme-d4"><i class="fa fa-home w3-margin-right"></i>Logo</a>
-            <a href="#" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" title="News"><i class="fa fa-globe"></i></a>
-            <a href="#" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" title="Account Settings"><i class="fa fa-user"></i></a>
-            <a href="#" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" title="Messages"><i class="fa fa-envelope"></i></a>
-            <div class="w3-dropdown-hover w3-hide-small">
-                <button class="w3-button w3-padding-large" title="Notifications"><i class="fa fa-bell"></i><span class="w3-badge w3-right w3-small w3-green">3</span></button>
-                <div class="w3-dropdown-content w3-card-4 w3-bar-block" style="width:300px">
-                    <a href="#" class="w3-bar-item w3-button">One new friend request</a>
-                    <a href="#" class="w3-bar-item w3-button">John Doe posted on your wall</a>
-                    <a href="#" class="w3-bar-item w3-button">Jane likes your post</a>
-                </div>
-            </div>
-            <a href="#" class="w3-bar-item w3-button w3-hide-small w3-right w3-padding-large w3-hover-white" title="My Account">
-                <img src="/w3images/avatar2.png" class="w3-circle" style="height:23px;width:23px" alt="Avatar">
+<body>
+    <!-- loader -->
+    @*<div id="loader">
+            <div class="spinner-grow text-secondary" role="status"></div>
+        </div>*@
+    <!-- * loader -->
+    <!-- App Header -->
+    <div class="appHeader">
+        <div class="left">
+            <a href="#" class="headerButton" data-toggle="modal" data-target="#sidebarPanel">
+                <i class="icon ion-ios-menu"></i>
+            </a>
+        </div>
+        <div class="pageTitle">@ViewBag.Title</div>
+        <div class="right">
+            <a href="javascript:;" class="headerButton toggle-searchbox">
+                <i class="icon ion-ios-search"></i>
             </a>
         </div>
     </div>
-
-    <!-- Navbar on small screens -->
-    <div id="navDemo" class="w3-bar-block w3-theme-d2 w3-hide w3-hide-large w3-hide-medium w3-large">
-        <a href="#" class="w3-bar-item w3-button w3-padding-large">Link 1</a>
-        @Html.ActionLink("API", "Index", "Help", new { area = "" }, new { @class = "w3-bar-item w3-button w3-padding-medium" })
-        <a href="https://www.w3schools.com/w3css/default.asp" class="w3-bar-item w3-button w3-padding-medium">Link 2</a>
-        <a href="#" class="w3-bar-item w3-button w3-padding-medium">Link 3</a>
-        <a href="#" class="w3-bar-item w3-button w3-padding-medium">My Profile</a>
-    </div>
-
-    <!-- Page Container -->
-    <div class="w3-container w3-content" style="max-width:1400px;margin-top:80px">
-        <!-- The Grid -->
-        <div class="w3-row">
-            <!-- Left Column -->
-            <div class="w3-col m12">
-                @RenderBody()
-                <!-- End Right Column -->
+    <!-- * App Header -->
+    <!-- Search Component -->
+    <div id="search" class="appHeader">
+        <form class="search-form">
+            <div class="form-group searchbox">
+                <input type="text" class="form-control">
+                <i class="input-icon icon ion-ios-search"></i>
+                <a href="javascript:;" class="ml-1 close toggle-searchbox"><i class="icon ion-ios-close-circle"></i></a>
             </div>
-
-            <!-- End Grid -->
-        </div>
-
-        <!-- End Page Container -->
+        </form>
     </div>
-    <br>
-
-    <!-- Footer -->
-    <footer class="w3-container w3-theme-d3 w3-padding-16">
-        <h5>Footer</h5>
-    </footer>
-
-    <footer class="w3-container w3-theme-d5">
-        <p>Powered by <a href="https://www.w3schools.com/w3css/default.asp" target="_blank">w3.css</a></p>
-    </footer>
-
-    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-
-    <script>
-        // Accordion
-        function myFunction(id) {
-            var x = document.getElementById(id);
-            if (x.className.indexOf("w3-show") == -1) {
-                x.className += " w3-show";
-                x.previousElementSibling.className += " w3-theme-d1";
-            } else {
-                x.className = x.className.replace("w3-show", "");
-                x.previousElementSibling.className =
-                    x.previousElementSibling.className.replace(" w3-theme-d1", "");
-            }
-        }
-
-        // Used to toggle the menu on smaller screens when clicking on the menu button
-        function openNav() {
-            var x = document.getElementById("navDemo");
-            if (x.className.indexOf("w3-show") == -1) {
-                x.className += " w3-show";
-            } else {
-                x.className = x.className.replace(" w3-show", "");
-            }
-        }
-    </script>
-    @RenderSection("scripts", required: false)
-</body>
-
-@*<body class="w3-theme-l5">
-    <div class="w3-top">
-        <div class="w3-bar w3-theme-d2 w3-left-align w3-large">
-            <a class="w3-bar-item w3-button w3-hide-medium w3-hide-large w3-right w3-padding-large w3-hover-white w3-large w3-theme-d2" href="javascript:void(0);" onclick="openNav()"><i class="fa fa-bars"></i></a>
-            @Html.ActionLink("Home", "Index", "Home", new { area = "" }, null)
-            @Html.ActionLink("API", "Index", "Help", new { area = "" }, null)
-
-            <a href="#" class="w3-bar-item w3-button w3-padding-large w3-theme-d4"><i class="fa fa-home w3-margin-right"></i>Logo</a>
-            <a href="#" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" title="News"><i class="fa fa-globe"></i></a>
-            <a href="#" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" title="Account Settings"><i class="fa fa-user"></i></a>
-            <a href="#" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" title="Messages"><i class="fa fa-envelope"></i></a>
-            <div class="w3-dropdown-hover w3-hide-small">
-                <button class="w3-button w3-padding-large" title="Notifications"><i class="fa fa-bell"></i><span class="w3-badge w3-right w3-small w3-green">3</span></button>
-                <div class="w3-dropdown-content w3-card-4 w3-bar-block" style="width:300px">
-                    <a href="#" class="w3-bar-item w3-button">One new friend request</a>
-                    <a href="#" class="w3-bar-item w3-button">John Doe posted on your wall</a>
-                    <a href="#" class="w3-bar-item w3-button">Jane likes your post</a>
-                </div>
-            </div>
-            <a href="#" class="w3-bar-item w3-button w3-hide-small w3-right w3-padding-large w3-hover-white" title="My Account">
-                <img src="/w3images/avatar2.png" class="w3-circle" style="height:23px;width:23px" alt="Avatar">
-            </a>
-        </div>
-    </div>
-    <!-- Navbar on small screens -->
-    <div id="navDemo" class="w3-bar-block w3-theme-d2 w3-hide w3-hide-large w3-hide-medium w3-large">
-        @Html.ActionLink("Home", "Index", "Home", new { area = "" }, null)
-        @Html.ActionLink("API", "Index", "Help", new { area = "" }, null)
-    </div>
-    <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
-            </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home", new { area = "" }, null)</li>
-                    <li>@Html.ActionLink("API", "Index", "Help", new { area = "" }, null)</li>
-                </ul>
-            </div>
-        </div>
-    </div>
-    <!-- Page Container -->
-    <div class="w3-container w3-content" style="max-width:1400px;margin-top:80px">
-        <!-- The Grid -->
-        <div class="w3-row">
-            <!-- Left Column -->
-            <div class="w3-col m3">
-                <!-- Profile -->
-                <div class="w3-card w3-round w3-white">
-                    <div class="w3-container">
-                        <h4 class="w3-center">My Profile</h4>
-                        <p class="w3-center"><img src="/w3images/avatar3.png" class="w3-circle" style="height:106px;width:106px" alt="Avatar"></p>
-                        <hr>
-                        <p><i class="fa fa-pencil fa-fw w3-margin-right w3-text-theme"></i> Designer, UI</p>
-                        <p><i class="fa fa-home fa-fw w3-margin-right w3-text-theme"></i> London, UK</p>
-                        <p><i class="fa fa-birthday-cake fa-fw w3-margin-right w3-text-theme"></i> April 1, 1988</p>
-                    </div>
-                </div>
-                <br>
-            </div>
-        </div>
+    <!-- * Search Component -->
+    <!-- App Capsule -->
+    <div id="appCapsule">
         @RenderBody()
     </div>
-                @*<div class="container body-content">
-                        @RenderBody()
-                        <hr />
-                        <footer>
-                            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
-                        </footer>
-                    </div>*
+    <!-- App Bottom Menu -->
+    <div class="appBottomMenu">
+        <a href="app-components.html" class="item active">
+            <div class="col">
+                <i class="icon ion-ios-today"></i>
+                <strong>Home</strong>
+            </div>
+        </a>
+        <a href="component-listview.html" class="item">
+            <div class="col">
+                <i class="icon ion-ios-list"></i>
+                <strong>Listview</strong>
+            </div>
+        </a>
+        <a href="/Events/Index" class="item">
+            <div class="col">
+                <div class="action-button">
+                    <i class="icon ion-md-add"></i>
+                </div>
+            </div>
+        </a>
+        <a href="component-messages.html" class="item">
+            <div class="col">
+                <i class="icon ion-ios-chatboxes"></i>
+                <strong>Messages</strong>
+            </div>
+        </a>
+        <a href="javascript:;" class="item" data-toggle="modal" data-target="#sidebarPanel">
+            <div class="col">
+                <i class="icon ion-ios-menu"></i>
+                <strong>Menu</strong>
+            </div>
+        </a>
+    </div>
+    <!-- * App Bottom Menu -->
+    <!-- App Sidebar -->
+    <div class="modal fade panelbox panelbox-left" id="sidebarPanel" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-body p-0">
+                    <!-- profile box -->
+                    <div class="profileBox pt-2 pb-2">
+                        <div class="image-wrapper">
+                            <img src="@ViewBag.ProfilePic" alt="image" class="imaged rounded w36">
+                        </div>
+                        <div class="in">
+                            <strong>@ViewBag.UserTitle</strong>
+                            <div class="text-muted">Member</div>
+                        </div>
+                    </div>
+                    <!-- * profile box -->
+                    <ul class="listview flush transparent no-line image-listview">
+                        <li>
+                            <a href="/UserProfile/UpdateProfile" class="item">
+                                <div class="icon-box bg-primary">
+                                    <i class="icon ion-ios-person"></i>
+                                </div>
+                                <div class="in">
+                                    Update Profile
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/TimeLine/Index " class="item">
+                                <div class="icon-box bg-primary">
+                                    <i class="icon ion-ios-home"></i>
+                                </div>
+                                <div class="in">
+                                    My TimeLine
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/Events/Index" class="item">
+                                <div class="icon-box bg-danger">
+                                    <i class="icon ion-ios-alarm"></i>
+                                </div>
+                                <div class="in">
+                                    <div>Add Event</div>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/Home/LocationType" class="item">
+                                <div class="icon-box bg-danger">
+                                    <i class="icon ion-ios-alarm"></i>
+                                </div>
+                                <div class="in">
+                                    <div>Add Location</div>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/Friends/Index" class="item">
+                                <div class="icon-box bg-success">
+                                    <i class="icon ion-ios-chatbubbles"></i>
+                                </div>
+                                <div class="in">
+                                    <div>Friends</div>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="item">
+                                <div class="icon-box bg-info">
+                                    <i class="icon ion-ios-list"></i>
+                                </div>
+                                <div class="in">
+                                    <div>Chat</div>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/Account/Login" class="item" data-dismiss="modal">
+                                <div class="icon-box bg-warning">
+                                    <i class="icon ion-md-close"></i>
+                                </div>
+                                <div class="in">
+                                    @*<div>Login/Logout</div>*@
+                                    <div> @Html.Partial("_LoginPartial")</div>
+                                </div>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- * App Sidebar -->
+    <!-- ///////////// Js Files ////////////////////  -->
+    <!-- Jquery -->
+    <script src="https://egemem.com/theme/mobilekit/view/dark/assets/js/lib/jquery-3.4.1.min.js"></script>
+    <!-- Bootstrap-->
+    <script src="https://egemem.com/theme/mobilekit/view/dark/assets/js/lib/popper.min.js"></script>
+    <script src="https://egemem.com/theme/mobilekit/view/dark/assets/js/lib/bootstrap.min.js"></script>
+    <!-- Owl Carousel -->
+    <script src="https://egemem.com/theme/mobilekit/view/dark/assets/js/plugins/owl-carousel/owl.carousel.min.js"></script>
+    <!-- Base Js File -->
+    <script src="https://egemem.com/theme/mobilekit/view/dark/assets/js/base.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
-@Scripts.Render("~/bundles/jquery")
-@Scripts.Render("~/bundles/bootstrap")
-@RenderSection("scripts", required: false)
-<script>
-    // Accordion
-    function myFunction(id) {
-        var x = document.getElementById(id);
-        if (x.className.indexOf("w3-show") == -1) {
-            x.className += " w3-show";
-            x.previousElementSibling.className += " w3-theme-d1";
-        } else {
-            x.className = x.className.replace("w3-show", "");
-            x.previousElementSibling.className =
-                x.previousElementSibling.className.replace(" w3-theme-d1", "");
-        }
-    }
-
-    // Used to toggle the menu on smaller screens when clicking on the menu button
-    function openNav() {
-        var x = document.getElementById("navDemo");
-        if (x.className.indexOf("w3-show") == -1) {
-            x.className += " w3-show";
-        } else {
-            x.className = x.className.replace(" w3-show", "");
-        }
-    }
-</script>
-</body>*@
+    @RenderSection("scripts", required: false)
+</body>
 </html>

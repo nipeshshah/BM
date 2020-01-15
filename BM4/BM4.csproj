@@ -180,6 +180,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Code\CommonFunctions.cs" />
     <Compile Include="Code\Constants.cs" />
     <Compile Include="Code\Settings.cs" />
     <Compile Include="Controllers\AccountController.cs" />
@@ -192,9 +193,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202001081808306_1.cs" />
-    <Compile Include="Migrations\202001081808306_1.Designer.cs">
-      <DependentUpon>202001081808306_1.cs</DependentUpon>
+    <Compile Include="Migrations\202001151815263_1.cs" />
+    <Compile Include="Migrations\202001151815263_1.Designer.cs">
+      <DependentUpon>202001151815263_1.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -206,6 +207,7 @@
     <Compile Include="Models\TimeLineViewModal.cs" />
     <Compile Include="Models\UserConnections.cs" />
     <Compile Include="Models\UserEvent.cs" />
+    <Compile Include="Models\UserEventViewModel.cs" />
     <Compile Include="Models\UserProfile.cs" />
     <Compile Include="Models\UserViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -222,6 +224,7 @@
     <Content Include="Content\Site.css" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
@@ -276,6 +279,7 @@
     <Content Include="Views\TimeLine\EventDetail.cshtml" />
     <Content Include="Views\TimeLine\Index.cshtml" />
     <Content Include="Views\Shared\_Layout2.cshtml" />
+    <Content Include="Views\Events\ViewAllEvents.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -294,8 +298,8 @@
     <Content Include="Scripts\jquery-3.3.1.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202001081808306_1.resx">
-      <DependentUpon>202001081808306_1.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202001151815263_1.resx">
+      <DependentUpon>202001151815263_1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

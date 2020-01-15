@@ -1,9 +1,4 @@
-﻿
-@{
-    Layout = null;
-}
-
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 
 <html>
 <head>
@@ -16,9 +11,10 @@
     <link rel="apple-touch-icon" sizes="180x180" href="https://egemem.com/theme/mobilekit/view/dark/assets/img/apple-touch-icon.png">
     <link rel="icon" type="image/png" href="https://egemem.com/theme/mobilekit/view/dark/assets/img/favicon.png" sizes="32x32">
     <link rel="shortcut icon" href="https://egemem.com/theme/mobilekit/view/dark/assets/img/favicon.png">
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <style>
         option {
-            color:black;    
+            color: black;
         }
     </style>
 </head>
@@ -72,7 +68,7 @@
                 <strong>Listview</strong>
             </div>
         </a>
-        <a href="javascript:;" class="item">
+        <a href="/Events/Index" class="item">
             <div class="col">
                 <div class="action-button">
                     <i class="icon ion-md-add"></i>
@@ -101,42 +97,59 @@
                     <!-- profile box -->
                     <div class="profileBox pt-2 pb-2">
                         <div class="image-wrapper">
-                            <img src="assets/img/sample/avatar/avatar1.jpg" alt="image" class="imaged rounded w36">
+                            <img src="@ViewBag.ProfilePic" alt="image" class="imaged rounded w36">
                         </div>
                         <div class="in">
-                            <strong>Kimmy Tomoaki</strong>
+                            <strong>@ViewBag.UserTitle</strong>
                             <div class="text-muted">Member</div>
                         </div>
                     </div>
                     <!-- * profile box -->
-                    <div class="listview-title mt-1">Menu</div>
                     <ul class="listview flush transparent no-line image-listview">
                         <li>
-                            <a href="app-components.html" class="item">
+                            <a href="/TimeLine/Index " class="item">
                                 <div class="icon-box bg-primary">
                                     <i class="icon ion-ios-home"></i>
                                 </div>
                                 <div class="in">
-                                    Components
-                                    <span class="badge badge-danger">10</span>
+                                    My TimeLine
                                 </div>
                             </a>
                         </li>
                         <li>
-                            <a href="app-components.html" class="item">
+                            <a href="/Events/Index" class="item">
                                 <div class="icon-box bg-danger">
                                     <i class="icon ion-ios-alarm"></i>
                                 </div>
                                 <div class="in">
-                                    <div>Alarm</div>
-                                    <span class="text-muted">05:20 AM</span>
+                                    <div>Add Event</div>
                                 </div>
                             </a>
                         </li>
                         <li>
-                            <a href="component-messages.html" class="item">
+                            <a href="/Home/LocationType" class="item">
+                                <div class="icon-box bg-danger">
+                                    <i class="icon ion-ios-alarm"></i>
+                                </div>
+                                <div class="in">
+                                    <div>Add Location</div>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/Friends/Index" class="item">
                                 <div class="icon-box bg-success">
                                     <i class="icon ion-ios-chatbubbles"></i>
+                                </div>
+                                <div class="in">
+                                    <div>Friends</div>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="item">
+                                <div class="icon-box bg-info">
+                                    <i class="icon ion-ios-list"></i>
                                 </div>
                                 <div class="in">
                                     <div>Chat</div>
@@ -144,22 +157,13 @@
                             </a>
                         </li>
                         <li>
-                            <a href="component-listview.html" class="item">
-                                <div class="icon-box bg-info">
-                                    <i class="icon ion-ios-list"></i>
-                                </div>
-                                <div class="in">
-                                    <div>Listview</div>
-                                </div>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="app-components.html" class="item" data-dismiss="modal">
+                            <a href="/Account/Login" class="item" data-dismiss="modal">
                                 <div class="icon-box bg-warning">
                                     <i class="icon ion-md-close"></i>
                                 </div>
                                 <div class="in">
-                                    <div>Close Sidebar</div>
+                                    @*<div>Login/Logout</div>*@
+                                    <div> @Html.Partial("_LoginPartial")</div>
                                 </div>
                             </a>
                         </li>
@@ -179,6 +183,8 @@
     <script src="https://egemem.com/theme/mobilekit/view/dark/assets/js/plugins/owl-carousel/owl.carousel.min.js"></script>
     <!-- Base Js File -->
     <script src="https://egemem.com/theme/mobilekit/view/dark/assets/js/base.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
+    @RenderSection("scripts", required: false)
 </body>
 </html>
