@@ -184,11 +184,13 @@
     <Compile Include="Code\Constants.cs" />
     <Compile Include="Code\Settings.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\EventsController.cs" />
     <Compile Include="Controllers\FriendsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\TimeLineController.cs" />
+    <Compile Include="Controllers\UserConnectionsController.cs" />
     <Compile Include="Controllers\UserProfileController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -196,6 +198,10 @@
     <Compile Include="Migrations\202001151815263_1.cs" />
     <Compile Include="Migrations\202001151815263_1.Designer.cs">
       <DependentUpon>202001151815263_1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202001181827479_2.cs" />
+    <Compile Include="Migrations\202001181827479_2.Designer.cs">
+      <DependentUpon>202001181827479_2.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -214,6 +220,17 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="assets\css\jquery-ui.css" />
+    <Content Include="assets\css\style.css" />
+    <Content Include="assets\img\apple-touch-icon.png" />
+    <Content Include="assets\img\favicon.png" />
+    <Content Include="assets\img\Icon.png" />
+    <Content Include="assets\js\base.js" />
+    <Content Include="assets\js\bootstrap.min.js" />
+    <Content Include="assets\js\jquery-3.4.1.min.js" />
+    <Content Include="assets\js\jquery-ui.js" />
+    <Content Include="assets\js\owl.carousel.min.js" />
+    <Content Include="assets\js\popper.min.js" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -222,6 +239,7 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Images\faceicon.png" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
@@ -280,6 +298,11 @@
     <Content Include="Views\TimeLine\Index.cshtml" />
     <Content Include="Views\Shared\_Layout2.cshtml" />
     <Content Include="Views\Events\ViewAllEvents.cshtml" />
+    <Content Include="Views\UserProfile\Public.cshtml" />
+    <Content Include="Views\UserConnections\Create.cshtml" />
+    <Content Include="Views\UserConnections\Delete.cshtml" />
+    <Content Include="Views\UserConnections\Edit.cshtml" />
+    <Content Include="Views\UserConnections\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -300,6 +323,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\202001151815263_1.resx">
       <DependentUpon>202001151815263_1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202001181827479_2.resx">
+      <DependentUpon>202001181827479_2.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

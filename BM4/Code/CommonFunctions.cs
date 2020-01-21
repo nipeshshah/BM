@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Principal;
@@ -21,14 +21,13 @@ namespace BM4.Code
                 {
                     profile = context.UserProfiles.Where(t => t.UserName == User.Identity.Name).First();
                     ////string UserId = context.Users.Where(t => t.UserName == User.Identity.Name).First().Id;
-
-
+                    
                     //ViewBag.UserTitle = profile.Title;
                     //ViewBag.ProfilePic = profile.ProfilePic;
                 }
                 else
                 {
-                    string userId = context.Users.Where(t => t.UserName == User.Identity.Name).First().Id;
+                    string userId = User.Identity.GetUserId();
                     profile = context.UserProfiles.Add(new UserProfile()
                     {
                         UserId = userId,

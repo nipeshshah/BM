@@ -1,145 +1,42 @@
-﻿@{
-    ViewBag.Title = "LocationType";
-    Layout = "~/Views/Shared/_Layout.cshtml";
-    //Layout = null;
+@model IEnumerable<BM4.Models.UserEventViewModel>
+@{
+  ViewBag.Title = "My Life Events";
+  Layout = "~/Views/Shared/_Layout.cshtml";
+  //Layout = null;
 }
 
-<div class="section full mb-2">
-    <div class="section-title">Additional Text</div>
-    <div class="wide-block pb-1 pt-1">
-
-
-        <div class="form-group basic">
-            <div class="input-wrapper">
-                <label>City</label>
-                <input id="txtCity" class="w3-input w3-border w3-padding" type="text" placeholder="Select City">
-                <i class="clear-input icon ion-ios-close-circle"></i>
-            </div>
-            <div class="input-info">Enter your full name</div>
-        </div>
-
-        <div class="form-group basic">
-            <div class="input-wrapper">
-                <label>Location Type</label>
-                <select id="ddlLocationType" class="w3-input w3-border w3-padding">
-                    <option value="1" code="1">School</option>
-                    <option value="2" code="1">Higher School</option>
-                    <option value="3" code="2">College</option>
-                    <option value="4" code="2">Post-Graduation</option>
-                    <option value="5" code="3">Job</option>
-                    <option value="6" code="4">Tuition Classes</option>
-                    <option value="7" code="4">Coaching Classes</option>
-                    <option value="8" code="4">Computer Classes</option>
-                </select>
-                <i class="clear-input icon ion-ios-close-circle"></i>
-            </div>
-            <div class="input-info">Your password must be between 8 to 16 chars</div>
-        </div>
-        <div class="form-group basic">
-            <div class="input-wrapper">
-                <label>Standards (Comma Separated)</label>
-                <input id="txtStandard" class="w3-input w3-border w3-padding" type="text" placeholder="Select Standards (Comma Separated)">
-                <i class="clear-input icon ion-ios-close-circle"></i>
-            </div>
-            <div class="input-info">Your password must be between 8 to 16 chars</div>
-        </div>
-        <div class="form-group basic">
-            <div class="input-wrapper">
-                <label>Location</label>
-                <input id="txtLocation" class="w3-input w3-border w3-padding" type="text" placeholder="Select Location">
-                <i class="clear-input icon ion-ios-close-circle"></i>
-            </div>
-            <div class="input-info">Your password must be between 8 to 16 chars</div>
-        </div>
-        <div class="form-group basic">
-            <div class="input-wrapper">
-                <label>Education Board</label>
-                <input id="txtEducationBoard" class="w3-input w3-border w3-padding" type="text" placeholder="Select Education Board">
-                <i class="clear-input icon ion-ios-close-circle"></i>
-            </div>
-            <div class="input-info">Your password must be between 8 to 16 chars</div>
-        </div>
-        <div class="form-group basic">
-            <div class="input-wrapper">
-                <label>Semester/Year (Comma Separated)</label>
-                <input id="txtEducationBoard" class="w3-input w3-border w3-padding" type="text" placeholder="Select Semester/Year (Comma Separated)">
-                <i class="clear-input icon ion-ios-close-circle"></i>
-            </div>
-            <div class="input-info">Your password must be between 8 to 16 chars</div>
-        </div>
-        <div class="form-group basic">
-            <div class="input-wrapper">
-                <label>Course / Faculty</label>
-                <input id="txtCourseFaculty" class="w3-input w3-border w3-padding" type="text" placeholder="Select Course / Faculty">
-                <i class="clear-input icon ion-ios-close-circle"></i>
-            </div>
-            <div class="input-info">Your password must be between 8 to 16 chars</div>
-        </div>
-        <div class="form-group basic">
-            <div class="input-wrapper">
-                <label>College</label>
-                <input id="txtCollege" class="w3-input w3-border w3-padding" type="text" placeholder="Select College">
-                <i class="clear-input icon ion-ios-close-circle"></i>
-            </div>
-            <div class="input-info">Your password must be between 8 to 16 chars</div>
-        </div>
-        <div class="form-group basic">
-            <div class="input-wrapper">
-                <i class="clear-input icon ion-ios-close-circle"></i>
-            </div>
-            <div class="input-info">Your password must be between 8 to 16 chars</div>
-        </div>
-        <div class="form-group basic">
-            <div class="input-wrapper">
-                <i class="clear-input icon ion-ios-close-circle"></i>
-            </div>
-            <div class="input-info">Your password must be between 8 to 16 chars</div>
-        </div>
+@foreach(dynamic item in Model)
+{
+  <div class="section mt-2">
+    <div class="card">
+      <div class="card-header">
+        From @item.StartingDate.ToString("MMM yyyy") to @item.EndingDate.ToString("MMM yyyy")
+        <button style="float:right;" type="button" class="btn btn-icon btn-primary mr-1 mb-1"
+                onclick="window.location='/Events/DeleteEvent?Id=@item.EventId'">
+          <i class="icon ion-md-trash"></i>
+        </button>
+      </div>
+      <div class="card-body">
+        <h5 class="card-title">
+          @Html.Raw(item.Location1), @Html.Raw(item.Location2)
+        </h5>
+        <p class="card-text">
+          @Html.Raw(item.Location3), @Html.Raw(item.Location4)
+        </p>
+      </div>
+      <div class="card-footer text-right">
+        <a href="/Friends" class="btn-link text-right">View Friends</a>
+      </div>
     </div>
-</div>
-
-<div class="w3-row-padding">
-    <div class="w3-col l12 m12">
-        <div class="w3-card w3-round w3-white">
-            <div class="w3-container w3-padding">
-                <h6 class="w3-opacity">Create new location</h6>
-                <p>
-                    
-                </p>
-                <p>
-                    
-                </p>
-                <p>
-                    
-                </p>
-                <p>
-                    
-                </p>
-                <p>
-                    
-                </p>
-                <p>
-                    
-                </p>
-                <p>
-                    
-                </p>
-                <p>
-                    
-                </p>
-
-                University
-                3> Department
-                Company
-                4> Batch (Comma Separated)
-                Subject
-                Classes Name
-                Professor Name
-
-                <p>
-                    <button type="button" class="w3-button w3-theme"><i class="fa fa-pencil"></i>  Post</button>
-                </p>
-            </div>
-        </div>
+  </div>
+}
+@if(@Model.Count() == 0)
+{
+  <div class="section mt-2">
+    <div class="card">
+      <div class="card-header">
+        There are no events.
+      </div>
     </div>
-</div>
+  </div>
+}

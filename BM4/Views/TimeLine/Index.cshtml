@@ -1,4 +1,4 @@
-﻿@model BM4.Models.TimeLineViewModal
+@model BM4.Models.TimeLineViewModal
 
 @{
     ViewBag.Title = "Time Line";
@@ -51,10 +51,10 @@
                         @{bool hasEvents = false; }
                         @foreach (var events in Model.monthEvents.OrderBy(t => t.startDate))
                         {
-                            if (events.IsInMonth(Model.currentYear, Constants.MONTHNAMESHORT.IndexOf(item.Split(' ')[0]) + 1))
+                            if (events.IsInMonth(Model.currentYear, BM4.Code.Constants.MONTHNAMESHORT.IndexOf(item.Split(' ')[0]) + 1))
                             {
                                 hasEvents = true;
-                                <button style="float:right;" type="button" class="btn btn-icon btn-primary mr-1 mb-1" onclick="window.location='/TimeLine/EventDetail?Id=@events.locationId&year=@Model.currentYear&month=@(Constants.MONTHNAMESHORT.IndexOf(item.Split(' ')[0]) + 1)'">
+                                <button style="float:right;" type="button" class="btn btn-icon btn-primary mr-1 mb-1" onclick="window.location='/TimeLine/EventDetail?Id=@events.locationId&year=@Model.currentYear&month=@(BM4.Code.Constants.MONTHNAMESHORT.IndexOf(item.Split(' ')[0]) + 1)'">
                                     <i class="icon ion-md-more"></i>
                                 </button>
                                 <h4>@Html.DisplayFor(modelItem => events.location)</h4>

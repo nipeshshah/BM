@@ -60,6 +60,8 @@
 
                 @Html.ValidationSummary(false, "", new { @class = "text-danger" })
 
+                @Html.HiddenFor(model => model.UserId);
+
                 //@Html.Raw(string.Join("<br/>", ""))
 
                 <div class="form-group basic">

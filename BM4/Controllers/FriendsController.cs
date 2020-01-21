@@ -1,5 +1,5 @@
-using BM4.Code;
 using BM4.Models;
+using Microsoft.AspNet.Identity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,21 +8,54 @@ using System.Web.Mvc;
 
 namespace BM4.Controllers
 {
-    public class FriendsController : Controller
+    public class FriendsController : BaseController
     {
         // GET: Friends
         public ActionResult Index()
         {
-            ApplicationDbContext context = new ApplicationDbContext();
-            List<FriendConnection> friends = context.FriendConnections.Where(t => t.UserId2 == Settings.UserId(User) && t.Status == "Approved").OrderBy(t => t.User1.FirstName).ToList();
-            return View(friends);
+            if (User.Identity.IsAuthenticated)
+            {
+                ApplicationDbContext context = new ApplicationDbContext();
+                string userId = User.Identity.GetUserId();
+                //List<FriendConnection> friends = context.FriendConnections.Where(t => t.UserId1 == userId && t.Status == "Approved").OrderBy(t => t.User2.FirstName).ToList();
+                List<FriendConnection> friends = context.FriendConnections.Where(t => t.UserId1 == userId).OrderBy(t => t.User2.FirstName).ToList();
+                return View(friends);
+            }
+            else
+            {
+                return RedirectToAction("Login", "Account");
+            }
         }
 
-        public ActionResult Requests()
+        //public ActionResult Requests()
+        //{
+        //    ApplicationDbContext context = new ApplicationDbContext();
+        //    string userId = User.Identity.GetUserId();
+        //    List<FriendConnection> pendingRequests = context.FriendConnections.Where(t => t.UserId1 == userId && t.Status == "Pending").OrderByDescending(t => t.ConnectedDate).ToList();
+        //    return View(pendingRequests);
+        //}
+
+        public ActionResult UpdateRequest(string Status, string UserId)
         {
-            ApplicationDbContext context = new ApplicationDbContext();
-            List<FriendConnection> pendingRequests = context.FriendConnections.Where(t => t.UserId2 == Settings.UserId(User) && t.Status == "Pending").OrderByDescending(t => t.ConnectedDate).ToList();
-            return View(pendingRequests);
+            if (User.Identity.IsAuthenticated)
+            {
+                ApplicationDbContext context = new ApplicationDbContext();
+                string cuserId = User.Identity.GetUserId();
+                //List<FriendConnection> friends = context.FriendConnections.Where(t => t.UserId1 == userId && t.Status == "Approved").OrderBy(t => t.User2.FirstName).ToList();
+                FriendConnection friend = context.FriendConnections.Where(t => t.UserId1 == cuserId && t.UserId2 == UserId).FirstOrDefault();
+                if(friend != null)
+                {
+                    friend.Status = Status;
+                    context.SaveChanges();
+                }
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                return RedirectToAction("Login", "Account");
+            }
+            //Rejected
+            //    Approved
         }
     }
 }

@@ -1,45 +1,29 @@
 ﻿@model IEnumerable<BM4.Models.FriendConnection>
 
 @{
-    ViewBag.Title = "Requests";
+    ViewBag.Title = "Pending Requests";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
-<h2>Requests</h2>
-
 <p>
     @Html.ActionLink("View Friends", "Index")
 </p>
-<table class="table">
-    <tr>
-        <th>&nbsp;</th>
-        <th>
-            @Html.DisplayNameFor(model => model.User2.Title)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ConnectedDate)
-        </th>
-        <th></th>
-    </tr>
-
+<ul class="listview image-listview">
     @foreach (var item in Model)
     {
-        <tr>
-            <td>
-                <img src="@Html.DisplayFor(modelItem => item.User2.ProfilePic)" width="100" height="100" />
-
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.User2.Title)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ConnectedDate)
-            </td>
-            <td>
-                <a href="/Friends/UpdateRequest?Id=@item.User2.UserId">Approve</a>
-                <a href="/Friends/UpdateRequest?Id=@item.User2.UserId">Reject</a>
-            </td>
-        </tr>
+        <li>
+            <a href="/UserProfile/Public?Id=@item.User2.UserId" class="item">
+                <img src="@Html.DisplayFor(modelItem => item.User2.ProfilePic)" alt="image" class="image" />
+                <div class="in">
+                    <div>
+                        <header></header>
+                        @Html.DisplayFor(modelItem => item.User2.Title)
+                        <footer> </footer>
+                        <footer>Requested on @Html.DisplayFor(modelItem => item.ConnectedDate)</footer>
+                    </div>
+                    <span class="text-muted"></span>
+                </div>
+            </a><br />
+            <a href="/Friends/UpdateRequest?Status=Approved&UserId=@item.User2.UserId">Approve</a>&nbsp;&nbsp;&nbsp;<a href="/Friends/UpdateRequest?Status=Rejected&UserId=@item.User2.UserId">Reject</a>&nbsp;&nbsp;&nbsp;
+        </li>
     }
-
-</table>
+</ul>

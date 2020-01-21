@@ -1,44 +1,73 @@
 ﻿@model IEnumerable<BM4.Models.FriendConnection>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Friends";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Index</h2>
+<div class="tab-pane fade active show" id="lined" role="tabpanel">
+    <div class="section full">
+        <div class="wide-block pb-2">
 
-<p>
-    
-    @Html.ActionLink("Pending Requests", "Requests")
-</p>
-<table class="table">
-    <tr>
-        <th>&nbsp;</th>
-        <th>
-            @Html.DisplayNameFor(model => model.User2.Title)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ConnectedDate)
-        </th>
-        <th></th>
-    </tr>
+            <ul class="nav nav-tabs style1" role="tablist">
+                <li class="nav-item">
+                    <a class="nav-link active" data-toggle="tab" href="#home11" role="tab" aria-selected="false">
+                        Connected
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-toggle="tab" href="#profile12" role="tab" aria-selected="true">
+                        Requests
+                    </a>
+                </li>
+            </ul>
+            <div class="tab-content mt-2">
+                <div class="tab-pane fade active show" id="home11" role="tabpanel">
+                    <ul class="listview image-listview">
+                        @foreach (var item in Model.Where(t => t.Status == "Approved"))
+                        {
+                            <li>
+                                <a href="/UserProfile/Public?UserId=@item.User2.UserId" class="item">
+                                    <img src="@Html.DisplayFor(modelItem => item.User2.ProfilePic)" alt="image" class="image">
+                                    <div class="in">
+                                        <div>
+                                            <header></header>
+                                            @Html.DisplayFor(modelItem => item.User2.Title)
+                                            <footer>Connected on @Html.DisplayFor(modelItem => item.ConnectedDate)</footer>
+                                        </div>
+                                        <span class="text-muted"></span>
+                                    </div>
+                                </a>
+                                <a href="/UserProfile/Public?UserId=@item.User2.UserId">View&nbsp;Profile</a>&nbsp;&nbsp;&nbsp;
+                            </li>
+                        }
+                    </ul>
+                </div>
+                <div class="tab-pane fade" id="profile12" role="tabpanel">
+                    <ul class="listview image-listview">
+                        @foreach (var item in Model.Where(t => t.Status == "Pending"))
+                        {
+                            <li>
+                                <a href="/UserProfile/Public?UserId=@item.User2.UserId" class="item">
+                                    <img src="@Html.DisplayFor(modelItem => item.User2.ProfilePic)" alt="image" class="image" />
+                                    <div class="in">
+                                        <div>
+                                            <header></header>
+                                            @Html.DisplayFor(modelItem => item.User2.Title)
+                                            <footer> </footer>
+                                            <footer>Requested on @Html.DisplayFor(modelItem => item.ConnectedDate)</footer>
+                                        </div>
+                                        <span class="text-muted"></span>
+                                    </div>
+                                </a><br />
+                                <a href="/Friends/UpdateRequest?Status=Approved&UserId=@item.User2.UserId">Approve</a>&nbsp;&nbsp;&nbsp;<a href="/Friends/UpdateRequest?Status=Rejected&UserId=@item.User2.UserId">Reject</a>&nbsp;&nbsp;&nbsp;
+                            </li>
+                        }
+                    </ul>
+                </div>
+            </div>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            <img src="@Html.DisplayFor(modelItem => item.User2.ProfilePic)" width="100" height="100" />
-            
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.User2.Title)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ConnectedDate)
-        </td>
-        <td>
-            <a href="/UserProfile/Public?Id=@item.User2.UserId">View Profile</a>
-        </td>
-    </tr>
-}
+        </div>
+    </div>
 
-</table>
+</div>

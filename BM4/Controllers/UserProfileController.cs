@@ -1,4 +1,4 @@
-﻿using BM4.Code;
+using BM4.Code;
 using BM4.Models;
 using Microsoft.AspNet.Identity;
 using System;
@@ -11,7 +11,7 @@ using System.Web.Mvc;
 
 namespace BM4.Controllers
 {
-    public class UserProfileController : Controller
+    public class UserProfileController : BaseController
     {
         // GET: UserProfile
         public ActionResult Index()
@@ -29,11 +29,11 @@ namespace BM4.Controllers
                 UserProfile profile = functions.CurrentUserProfile(User);
                 return View(profile);
             }
-            return View(new UserProfile());
+            return RedirectToAction("Login","Account");
         }
 
         [HttpPost]
-        public ActionResult PostProfile(UserProfile userProfile)
+        public ActionResult PostProfile([Bind(Include = "Title,FirstName,MiddleName,LastName,DateOfBirth,ProfileImage,ProfilePic,City,UserId,UserName")] UserProfile userProfile)
         {
             //if (ModelState.IsValid)
             //{
@@ -42,41 +42,31 @@ namespace BM4.Controllers
                 HttpPostedFileBase file = Request.Files[0];
                 if (file.ContentLength > 0)
                 {
-                    var fileName = Path.GetFileName(file.FileName);
-                    userProfile.ProfilePic = Path.Combine(
-                        Server.MapPath("~/Images"), fileName);
-                    file.SaveAs(userProfile.ProfilePic);
+                    //var fileName = Path.GetFileName(file.FileName);
+                    var extension = Path.GetExtension(file.FileName);
+                    var fileName = userProfile.UserId + extension;
+                    file.SaveAs(Path.Combine(Server.MapPath("~/Images"), fileName));
+                    userProfile.ProfilePic = ConfigurationManager.AppSettings["UserImagePath"] + fileName;
                 }
 
                 using (ApplicationDbContext context = new ApplicationDbContext())
                 {
-                    userProfile.UserName = User.Identity.Name;
-                    context.Entry(userProfile).State = System.Data.Entity.EntityState.Modified;
+                    context.UserProfiles.Attach(userProfile);
+                    context.Entry(userProfile).Property(x => x.Title).IsModified = true;
+                    context.Entry(userProfile).Property(x => x.FirstName).IsModified = true;
+                    context.Entry(userProfile).Property(x => x.MiddleName).IsModified = true;
+                    context.Entry(userProfile).Property(x => x.LastName).IsModified = true;
+                    context.Entry(userProfile).Property(x => x.DateOfBirth).IsModified = true;
+                    context.Entry(userProfile).Property(x => x.ProfilePic).IsModified = true;
+                    context.Entry(userProfile).Property(x => x.City).IsModified = true;
+
+                    //UserProfile newProfile = context.Students.Find(id);
+                    //context.Entry(userProfile).State = System.Data.Entity.EntityState.Modified;
+                    System.Diagnostics.Debug.WriteLine(context.Database.Log = s => System.Diagnostics.Debug.WriteLine(s));
                     context.SaveChanges();
                 }
                 return RedirectToAction("UpdateProfile");
-            }
-            //}
-
-            //Use Namespace called :  System.IO  
-            //string FileName = Path.GetFileNameWithoutExtension(userProfile.ProfileImage.FileName);
-
-            ////To Get File Extension  
-            //string FileExtension = Path.GetExtension(userProfile.ProfileImage.FileName);
-
-            ////Add Current Date To Attached File Name  
-            //FileName = DateTime.Now.ToString("yyyyMMdd") + "-" + FileName.Trim() + FileExtension;
-
-            ////Get Upload path from Web.Config file AppSettings.  
-            //string UploadPath = ConfigurationManager.AppSettings["UserImagePath"].ToString();
-
-            ////Its Create complete path to store in server.  
-            //userProfile.ProfilePic = UploadPath + FileName;
-
-            ////To copy and save file into server.  
-            //userProfile.ProfileImage.SaveAs(userProfile.ProfilePic);
-
-            //return View();
+            }            
             return View(new UserProfile());
         }
 
@@ -86,6 +76,7 @@ namespace BM4.Controllers
             if (User.Identity.IsAuthenticated || true)
             {
                 UserProfile profile = context.UserProfiles.Where(t => t.UserId == UserId).First();
+                profile.UserConnections = context.UserConnections.Where(t => t.UserId == UserId).ToList();
                 return View(profile);
             }
             else

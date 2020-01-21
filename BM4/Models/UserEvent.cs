@@ -39,7 +39,7 @@ namespace BM4.Models
         [DisplayName("Select Ending Date")]
         public DateTime EndingDate { get; set; }
 
-        [Required]
+        //[Required]
         public string UserId { get; set; }
 
         [ForeignKey("UserId")]

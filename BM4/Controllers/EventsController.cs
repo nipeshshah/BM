@@ -1,12 +1,11 @@
 using BM4.Models;
 using Microsoft.AspNet.Identity;
-using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
 
 namespace BM4.Controllers
 {
-  public class EventsController : Controller
+  public class EventsController : BaseController
   {
     // GET: Events
     public ActionResult Index()
@@ -59,7 +58,6 @@ namespace BM4.Controllers
         }
         using(ApplicationDbContext context = new ApplicationDbContext())
         {
-          userEvent.UserId = User.Identity.GetUserId();
           context.UserEvents.Add(userEvent);
           context.SaveChanges();
           return RedirectToAction("Index");
@@ -73,23 +71,7 @@ namespace BM4.Controllers
 
     public ActionResult ViewAllEvents()
     {
-      ApplicationDbContext context = new ApplicationDbContext();
-      Code.CommonFunctions functions = new Code.CommonFunctions();
-      IEnumerable<UserEventViewModel> userEvents =
-        context.UserEvents.Where(t => t.User.UserName == User.Identity.Name)
-          .Select(x => new UserEventViewModel()
-          {
-            EventId = x.UserEventId,
-            Location1 = x.Location.Text1,
-            Location2 = x.Location.MainLocation.Text2,
-            Location3 = x.Location.MainLocation.Text3,
-            Location4 = x.Location.MainLocation.Text4,
-            City = x.Location.MainLocation.City,
-            StartingDate = x.StartingDate,
-            EndingDate = x.EndingDate
-          }).AsEnumerable();
-
-      return View(userEvents);
+      return View();
     }
 
     [HttpPost]

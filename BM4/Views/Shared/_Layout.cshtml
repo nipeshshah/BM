@@ -1,200 +1,194 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 
 <html>
 <head>
-    <meta name="viewport" content="width=device-width" />
-    <title>BM: @ViewBag.Title</title>
-    <link rel="stylesheet" href="https://egemem.com/theme/mobilekit/view/dark/assets/css/style.css">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Mobilekit HTML Mobile UI Kit">
-    <meta name="keywords" content="bootstrap, mobile template, cordova, phonegap, mobile, html, responsive" />
-    <link rel="apple-touch-icon" sizes="180x180" href="https://egemem.com/theme/mobilekit/view/dark/assets/img/apple-touch-icon.png">
-    <link rel="icon" type="image/png" href="https://egemem.com/theme/mobilekit/view/dark/assets/img/favicon.png" sizes="32x32">
-    <link rel="shortcut icon" href="https://egemem.com/theme/mobilekit/view/dark/assets/img/favicon.png">
-    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-    <style>
-        option {
-            color: black;
-        }
-    </style>
+  <meta name="viewport" content="width=device-width" />
+  <title>BM: @ViewBag.Title</title>
+  <link rel="stylesheet" href="/assets/css/style.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Mobilekit HTML Mobile UI Kit">
+  <meta name="keywords" content="bootstrap, mobile template, cordova, phonegap, mobile, html, responsive" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/img/apple-touch-icon.png">
+  <link rel="icon" type="image/png" href="/assets/img/Icon.png" sizes="32x32">
+  <link rel="shortcut icon" href="/assets/img/favicon.png">
+  <link rel="stylesheet" href="/assets/css/jquery-ui.css">
+  <style>
+    option {
+      color: black;
+    }
+  </style>
 </head>
 <body>
-    <!-- loader -->
-    @*<div id="loader">
-            <div class="spinner-grow text-secondary" role="status"></div>
-        </div>*@
-    <!-- * loader -->
-    <!-- App Header -->
-    <div class="appHeader">
-        <div class="left">
-            <a href="#" class="headerButton" data-toggle="modal" data-target="#sidebarPanel">
-                <i class="icon ion-ios-menu"></i>
-            </a>
+  <!-- loader -->
+  @*<div id="loader">
+        <div class="spinner-grow text-secondary" role="status"></div>
+    </div>*@
+  <!-- * loader -->
+  <!-- App Header -->
+  <div class="appHeader">
+    <div class="left">
+      <a href="#" class="headerButton" data-toggle="modal" data-target="#sidebarPanel">
+        <i class="icon ion-ios-menu"></i>
+      </a>
+    </div>
+    <div class="pageTitle">@ViewBag.Title</div>
+    <div class="right">
+      <a href="#" class="headerButton toggle-searchbox">
+        <i class="icon ion-ios-search"></i>
+      </a>
+    </div>
+  </div>
+  <!-- * App Header -->
+  <!-- Search Component -->
+  <div id="search" class="appHeader">
+    <form class="search-form">
+      <div class="form-group searchbox">
+        <input type="text" class="form-control">
+        <i class="input-icon icon ion-ios-search"></i>
+        <a href="javascript:;" class="ml-1 close toggle-searchbox"><i class="icon ion-ios-close-circle"></i></a>
+      </div>
+    </form>
+  </div>
+  <!-- * Search Component -->
+  <!-- App Capsule -->
+  <div id="appCapsule">
+    @RenderBody()
+  </div>
+  <!-- App Bottom Menu -->
+  <div class="appBottomMenu">
+    <a href="app-components.html" class="item active">
+      <div class="col">
+        <i class="icon ion-ios-today"></i>
+        <strong>Home</strong>
+      </div>
+    </a>
+    <a href="component-listview.html" class="item">
+      <div class="col">
+        <i class="icon ion-ios-list"></i>
+        <strong>Listview</strong>
+      </div>
+    </a>
+    <a href="/Events/Index" class="item">
+      <div class="col">
+        <div class="action-button">
+          <i class="icon ion-md-add"></i>
         </div>
-        <div class="pageTitle">@ViewBag.Title</div>
-        <div class="right">
-            <a href="javascript:;" class="headerButton toggle-searchbox">
-                <i class="icon ion-ios-search"></i>
-            </a>
-        </div>
-    </div>
-    <!-- * App Header -->
-    <!-- Search Component -->
-    <div id="search" class="appHeader">
-        <form class="search-form">
-            <div class="form-group searchbox">
-                <input type="text" class="form-control">
-                <i class="input-icon icon ion-ios-search"></i>
-                <a href="javascript:;" class="ml-1 close toggle-searchbox"><i class="icon ion-ios-close-circle"></i></a>
+      </div>
+    </a>
+    <a href="component-messages.html" class="item">
+      <div class="col">
+        <i class="icon ion-ios-chatboxes"></i>
+        <strong>Messages</strong>
+      </div>
+    </a>
+    <a href="javascript:;" class="item" data-toggle="modal" data-target="#sidebarPanel">
+      <div class="col">
+        <i class="icon ion-ios-menu"></i>
+        <strong>Menu</strong>
+      </div>
+    </a>
+  </div>
+  <!-- * App Bottom Menu -->
+  <!-- App Sidebar -->
+  <div class="modal fade panelbox panelbox-left" id="sidebarPanel" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-body p-0">
+          <!-- profile box -->
+          <div class="profileBox pt-2 pb-2">
+            <div class="image-wrapper">
+              <a href="/Home/Index">
+                <img src="@ViewBag.ProfilePic" alt="image" class="imaged rounded w36">
+              </a>
             </div>
-        </form>
-    </div>
-    <!-- * Search Component -->
-    <!-- App Capsule -->
-    <div id="appCapsule">
-        @RenderBody()
-    </div>
-    <!-- App Bottom Menu -->
-    <div class="appBottomMenu">
-        <a href="app-components.html" class="item active">
-            <div class="col">
-                <i class="icon ion-ios-today"></i>
-                <strong>Home</strong>
+            <div class="in">
+              <a href="/Home/Index">
+                <strong>@ViewBag.UserTitle</strong>
+                <div class="text-muted">Member</div>
+              </a>
             </div>
-        </a>
-        <a href="component-listview.html" class="item">
-            <div class="col">
-                <i class="icon ion-ios-list"></i>
-                <strong>Listview</strong>
-            </div>
-        </a>
-        <a href="/Events/Index" class="item">
-            <div class="col">
-                <div class="action-button">
-                    <i class="icon ion-md-add"></i>
+          </div>
+          <!-- * profile box -->
+          <ul class="listview flush transparent no-line image-listview">
+            <li>
+              <a href="/UserProfile/UpdateProfile" class="item">
+                <div class="icon-box bg-primary">
+                  <i class="icon ion-ios-person"></i>
                 </div>
-            </div>
-        </a>
-        <a href="component-messages.html" class="item">
-            <div class="col">
-                <i class="icon ion-ios-chatboxes"></i>
-                <strong>Messages</strong>
-            </div>
-        </a>
-        <a href="javascript:;" class="item" data-toggle="modal" data-target="#sidebarPanel">
-            <div class="col">
-                <i class="icon ion-ios-menu"></i>
-                <strong>Menu</strong>
-            </div>
-        </a>
-    </div>
-    <!-- * App Bottom Menu -->
-    <!-- App Sidebar -->
-    <div class="modal fade panelbox panelbox-left" id="sidebarPanel" tabindex="-1" role="dialog">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-body p-0">
-                    <!-- profile box -->
-                    <div class="profileBox pt-2 pb-2">
-                        <div class="image-wrapper">
-                            <img src="@ViewBag.ProfilePic" alt="image" class="imaged rounded w36">
-                        </div>
-                        <div class="in">
-                            <strong>@ViewBag.UserTitle</strong>
-                            <div class="text-muted">Member</div>
-                        </div>
-                    </div>
-                    <!-- * profile box -->
-                    <ul class="listview flush transparent no-line image-listview">
-                        <li>
-                            <a href="/UserProfile/UpdateProfile" class="item">
-                                <div class="icon-box bg-primary">
-                                    <i class="icon ion-ios-person"></i>
-                                </div>
-                                <div class="in">
-                                    Update Profile
-                                </div>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="/TimeLine/Index " class="item">
-                                <div class="icon-box bg-primary">
-                                    <i class="icon ion-ios-home"></i>
-                                </div>
-                                <div class="in">
-                                    My TimeLine
-                                </div>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="/Events/Index" class="item">
-                                <div class="icon-box bg-danger">
-                                    <i class="icon ion-ios-alarm"></i>
-                                </div>
-                                <div class="in">
-                                    <div>Add Event</div>
-                                </div>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="/Home/LocationType" class="item">
-                                <div class="icon-box bg-danger">
-                                    <i class="icon ion-ios-alarm"></i>
-                                </div>
-                                <div class="in">
-                                    <div>Add Location</div>
-                                </div>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="/Friends/Index" class="item">
-                                <div class="icon-box bg-success">
-                                    <i class="icon ion-ios-chatbubbles"></i>
-                                </div>
-                                <div class="in">
-                                    <div>Friends</div>
-                                </div>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#" class="item">
-                                <div class="icon-box bg-info">
-                                    <i class="icon ion-ios-list"></i>
-                                </div>
-                                <div class="in">
-                                    <div>Chat</div>
-                                </div>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="/Account/Login" class="item" data-dismiss="modal">
-                                <div class="icon-box bg-warning">
-                                    <i class="icon ion-md-close"></i>
-                                </div>
-                                <div class="in">
-                                    @*<div>Login/Logout</div>*@
-                                    <div> @Html.Partial("_LoginPartial")</div>
-                                </div>
-                            </a>
-                        </li>
-                    </ul>
+                <div class="in">
+                  Update Profile
                 </div>
-            </div>
+              </a>
+            </li>
+            <li>
+              <a href="/TimeLine/Index " class="item">
+                <div class="icon-box bg-primary">
+                  <i class="icon ion-ios-home"></i>
+                </div>
+                <div class="in">
+                  My TimeLine
+                </div>
+              </a>
+            </li>
+            <li>
+              <a href="/Events/Index" class="item">
+                <div class="icon-box bg-danger">
+                  <i class="icon ion-ios-alarm"></i>
+                </div>
+                <div class="in">
+                  <div>Add Event</div>
+                </div>
+              </a>
+            </li>
+            <li>
+              <a href="/Home/LocationType" class="item">
+                <div class="icon-box bg-danger">
+                  <i class="icon ion-ios-alarm"></i>
+                </div>
+                <div class="in">
+                  <div>Add Location</div>
+                </div>
+              </a>
+            </li>
+            <li>
+              <a href="/Friends/Index" class="item">
+                <div class="icon-box bg-success">
+                  <i class="icon ion-ios-chatbubbles"></i>
+                </div>
+                <div class="in">
+                  <div>Friends</div>
+                </div>
+              </a>
+            </li>
+            <li>
+              <a href="#" class="item">
+                <div class="icon-box bg-info">
+                  <i class="icon ion-ios-list"></i>
+                </div>
+                <div class="in">
+                  <div>Chat</div>
+                </div>
+              </a>
+            </li>
+          </ul>
+          @Html.Partial("_LoginPartial")
         </div>
+      </div>
     </div>
-    <!-- * App Sidebar -->
-    <!-- ///////////// Js Files ////////////////////  -->
-    <!-- Jquery -->
-    <script src="https://egemem.com/theme/mobilekit/view/dark/assets/js/lib/jquery-3.4.1.min.js"></script>
-    <!-- Bootstrap-->
-    <script src="https://egemem.com/theme/mobilekit/view/dark/assets/js/lib/popper.min.js"></script>
-    <script src="https://egemem.com/theme/mobilekit/view/dark/assets/js/lib/bootstrap.min.js"></script>
-    <!-- Owl Carousel -->
-    <script src="https://egemem.com/theme/mobilekit/view/dark/assets/js/plugins/owl-carousel/owl.carousel.min.js"></script>
-    <!-- Base Js File -->
-    <script src="https://egemem.com/theme/mobilekit/view/dark/assets/js/base.js"></script>
-    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  </div>
+  <!-- * App Sidebar -->
+  <!-- ///////////// Js Files ////////////////////  -->
+  <!-- Jquery -->
+  <script src="/assets/js/jquery-3.4.1.min.js"></script>
+  <!-- Bootstrap-->
+  <script src="/assets/js/popper.min.js"></script>
+  <script src="/assets/js/bootstrap.min.js"></script>
+  <!-- Owl Carousel -->
+  <script src="/assets/js/owl.carousel.min.js"></script>
+  <!-- Base Js File -->
+  <script src="/assets/js/base.js"></script>
+  <script src="/assets/js/jquery-ui.js"></script>
 
-    @RenderSection("scripts", required: false)
+  @RenderSection("scripts", required: false)
 </body>
 </html>

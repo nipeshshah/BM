@@ -1,0 +1,64 @@
+﻿@model BM4.Models.UserConnections
+
+@{
+    ViewBag.Title = "Edit Connection";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="section full mb-2">
+        <div class="wide-block pb-1 pt-1">
+            <div class="w3-container w3-padding">
+                <div class="form-horizontal">
+
+                    @Html.HiddenFor(model => model.ConnectionId)
+                    @Html.HiddenFor(model => model.UserId)
+
+                    <div class="form-group basic">
+                        <div class="input-wrapper">
+                            @Html.LabelFor(model => model.AppType, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @*@Html.EditorFor(model => model.AppType, new { htmlAttributes = new { @class = "form-control" } })*@
+                                @Html.DropDownListFor(model => model.AppType, new List<SelectListItem>
+                                    {
+                                       new SelectListItem{ Text="Facebook", Value = "Facebook"},
+                                       new SelectListItem{ Text="Twitter", Value = "Twitter" },
+                                       new SelectListItem{ Text="Instagram", Value = "Instagram" },
+                                       new SelectListItem{ Text="Other", Value = "Other" },
+                                    }, new { @class = "form-control"/*, onchange = "ChangeCategory()"*/ })
+                                @Html.ValidationMessageFor(model => model.AppType, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group basic">
+                    <div class="input-wrapper">
+
+                        @Html.LabelFor(model => model.AppUrl, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.AppUrl, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.AppUrl, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group basic">
+                    <div class="input-wrapper">
+                        <div class="col-md-offset-2 col-md-10">
+                            <input type="submit" value="Save" class="btn btn-primary btn-block" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>

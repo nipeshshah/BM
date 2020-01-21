@@ -1,0 +1,39 @@
+﻿@model IEnumerable<BM4.Models.UserConnections>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.AppType)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AppUrl)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.AppType)            
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AppUrl)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.ConnectionId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.ConnectionId })
+        </td>
+    </tr>
+}
+
+</table>
