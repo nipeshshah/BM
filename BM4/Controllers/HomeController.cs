@@ -11,22 +11,56 @@ namespace BM4.Controllers
   {
     public ActionResult Index()
     {
-      ApplicationDbContext context = new ApplicationDbContext();
-      string userId = User.Identity.GetUserId();
-      IEnumerable<UserEventViewModel> userEvents = context.UserEvents.Where(t => t.UserId == userId)
-          .Select(x => new UserEventViewModel()
-          {
-            EventId = x.UserEventId,
-            Location1 = x.Location.Text1,
-            Location2 = x.Location.MainLocation.Text2,
-            Location3 = x.Location.MainLocation.Text3,
-            Location4 = x.Location.MainLocation.Text4,
-            City = x.Location.MainLocation.City,
-            StartingDate = x.StartingDate,
-            EndingDate = x.EndingDate
-          }).AsEnumerable();
+      if(User.Identity.IsAuthenticated)
+      {
+        Code.CommonFunctions functions = new Code.CommonFunctions();
+        UserProfile userProfile = functions.CurrentUserProfile(User);
+        ApplicationDbContext context = new ApplicationDbContext();
+        string userId = User.Identity.GetUserId();
+        List<UserEventViewModel> userEvents = context.UserEvents.Where(t => t.UserId == userId)
+            .Select(x => new UserEventViewModel()
+            {
+              EventId = x.UserEventId,
+              Location1 = x.Location.Text1,
+              Location2 = x.Location.MainLocation.Text2,
+              Location3 = x.Location.MainLocation.Text3,
+              Location4 = x.Location.MainLocation.Text4,
+              City = x.Location.MainLocation.City,
+              StartingDate = x.StartingDate,
+              EndingDate = x.EndingDate
+            }).OrderByDescending(t => t.StartingDate).ToList();
 
-      return View(userEvents);
+        if(userProfile.DateOfBirth != null)
+        {
+          userEvents.Add(new UserEventViewModel()
+          {
+            StartingDate = userProfile.DateOfBirth,
+            EndingDate = userProfile.DateOfBirth
+          });
+        }
+        List<UserEventViewModel> finalEvents = new List<UserEventViewModel>();
+        //finalEvents.Add(userEvents.ElementAt(0));
+        for(int i = 0; i < userEvents.Count() - 1; i++)
+        {
+          finalEvents.Add(userEvents.ElementAt(i));
+          if(userEvents.ElementAt(i + 1).EndingDate < userEvents.ElementAt(i).StartingDate)
+          {
+            finalEvents.Add(new UserEventViewModel()
+            {
+              Location1 = "Where you have been ? Add your life event and connect with your friends.",
+              StartingDate = userEvents.ElementAt(i + 1).EndingDate,
+              EndingDate = userEvents.ElementAt(i).StartingDate,
+              HasScope = true
+            });
+          }
+
+        }
+        return View(finalEvents.OrderByDescending(t => t.StartingDate));
+      }
+      else
+      {
+        return View(new List<UserEventViewModel>());
+      }
     }
 
     public ActionResult About()
@@ -40,7 +74,7 @@ namespace BM4.Controllers
       {
 
       }
-        return View();
+      return View();
     }
 
     [HttpGet]
@@ -186,6 +220,11 @@ namespace BM4.Controllers
         int result = context.SaveChanges();
         return RedirectToAction("LocationType");
       }
+    }
+
+    public ActionResult Splash()
+    {
+      return View();
     }
   }
 }

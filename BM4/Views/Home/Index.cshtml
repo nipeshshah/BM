@@ -1,8 +1,10 @@
 @model IEnumerable<BM4.Models.UserEventViewModel>
+
 @{
-  ViewBag.Title = "My Life Events";
+  /**/
+
+  ViewBag.Title = "View All Events";
   Layout = "~/Views/Shared/_Layout.cshtml";
-  //Layout = null;
 }
 
 @foreach(dynamic item in Model)
@@ -11,10 +13,20 @@
     <div class="card">
       <div class="card-header">
         From @item.StartingDate.ToString("MMM yyyy") to @item.EndingDate.ToString("MMM yyyy")
-        <button style="float:right;" type="button" class="btn btn-icon btn-primary mr-1 mb-1"
-                onclick="window.location='/Events/DeleteEvent?Id=@item.EventId'">
-          <i class="icon ion-md-trash"></i>
-        </button>
+        @if(!item.HasScope)
+        {
+          <button style="float:right;" type="button" class="btn btn-icon btn-primary mr-1 mb-1"
+                  onclick="window.location='/Events/DeleteEvent?Id=@item.EventId'">
+            <i class="icon ion-md-trash"></i>
+          </button>
+        }
+        else
+        {
+          <button style="float:right;" type="button" class="btn btn-icon btn-primary mr-1 mb-1"
+                  onclick="window.location='/Events/Index?Start=@item.StartingDate.ToString("yyyy-MM-dd")&End=@item.EndingDate.ToString("yyyy-MM-dd")'">
+            <i class="icon ion-md-add-circle"></i>
+          </button>
+        }
       </div>
       <div class="card-body">
         <h5 class="card-title">
@@ -25,7 +37,14 @@
         </p>
       </div>
       <div class="card-footer text-right">
-        <a href="/Friends" class="btn-link text-right">View Friends</a>
+        @if(item.HasScope)
+        {
+          <a href="/Friends" class="btn-link text-right">View Friends</a>
+        }
+        else
+        {
+          <span>&nbsp;</span>
+        }
       </div>
     </div>
   </div>

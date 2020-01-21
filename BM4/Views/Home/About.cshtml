@@ -1,7 +1,145 @@
-﻿@{
-    ViewBag.Title = "About";
+@{
+    ViewBag.Title = "About Us / FAQ";
 }
-<h2>@ViewBag.Title.</h2>
-<h3>@ViewBag.Message</h3>
+@*<h2>@ViewBag.Title.</h2>
+*@
+<style>
+    .accordion .accordion-header .btn {
+        text-align: left;
+        height: auto;
+    }
+    .accordion .accordion-content {
+        padding-top: 20px;
+        padding-bottom: 20px;
+        text-align: justify;
+        padding-left: 10%;
+        padding-right: 10%;
+        margin: auto;
+    }
 
-<p>Use this area to provide additional information.</p>
+</style>
+<div class="section full mt-2 mb-2">
+    @*<div class="section-title">Iconed</div>*@
+    <div class="wide-block pb-1 pt-1">
+        <div class="w3-container w3-padding">
+            <div class="lead">
+                Many a times we have seen that we lost contact with out childhood friends.<br />
+                We are in contact with some or more friends but most of get disconnect with passing of time.<br />
+                In this era of Mobiles, there are less possibilities to get reunion.<br />
+                We BM (Batch Mates) Team, is focusing to develop an App which will serve as a bridge to connect
+                those batches with refresh those lots of dimmed memories .<br />
+                With all your support and interest we try to recreate an entire network again.<br />
+            </div>
+        </div>
+    </div>
+    <div class="accordion" id="accordionExample3">
+        <div class="item">
+            <div class="accordion-header">
+                <button class="btn collapsed" type="button" data-toggle="collapse" data-target="#accordion001" aria-expanded="false">
+                    <i class="icon ion-ios-bulb"></i>
+                    How can we connect with our friends ?
+                </button>
+            </div>
+            <div id="accordion001" class="accordion-body collapse" data-parent="#accordionExample3" style="">
+                <div class="accordion-content">
+                    Simply you need to add your life events with time. When another person also add the same event with the same time,
+                    that means both of you are sharing the same batch. Thus both of you will get an option to connect with each other.
+                </div>
+            </div>
+        </div>
+        <div class="item">
+            <div class="accordion-header">
+                <button class="btn collapsed" type="button" data-toggle="collapse" data-target="#accordion002" aria-expanded="false">
+                    <i class="icon ion-ios-bulb"></i>
+                    What is the vision behind BM (Batch Mates) ?
+                </button>
+            </div>
+            <div id="accordion002" class="accordion-body collapse" data-parent="#accordionExample3" style="">
+                <div class="accordion-content">
+                    Now a days life is so busy that we get in touch with only some or more people from the batch.<br />
+                    Idea here is when I select any of my life event, like My School of Standard 2 then I can see a list of
+                    all friends whether they are connected or not, with an option to connect.
+                </div>
+            </div>
+        </div>
+        <div class="item">
+            <div class="accordion-header">
+                <button class="btn collapsed" type="button" data-toggle="collapse" data-target="#accordion003" aria-expanded="false">
+                    <i class="icon ion-ios-bulb"></i>
+                    There are so many social sites like FB, Twitter, LinkedIn etc. Why should I duplicate my all details ?
+                </button>
+            </div>
+            <div id="accordion003" class="accordion-body collapse" data-parent="#accordionExample3" style="">
+                <div class="accordion-content">
+                    As of now we are just here to connecting people. Currently people are using different social
+                    sites to get connected. <br />
+                    In our app when user registers with us, we provide an option to add just the profile links of the
+                    social sites whichever they are using. <br />
+                    Once two users get connected, they can use whatever the common platform they would like to connect with.<br />
+                    We will guide users to connect with the Social platform they are actively using.
+                </div>
+            </div>
+        </div>
+        <div class="item">
+            <div class="accordion-header">
+                <button class="btn collapsed" type="button" data-toggle="collapse" data-target="#accordion004" aria-expanded="false">
+                    <i class="icon ion-ios-bulb"></i>
+                    Is sharing data here is safe ? Everyone will know where I have been ?
+                </button>
+            </div>
+            <div id="accordion004" class="accordion-body collapse" data-parent="#accordionExample3" style="">
+                <div class="accordion-content">
+                    Yes data here is secure, your timeline will only visible to you. Other people will only see the
+                    portion of time you have spent with them in a same batch. <br />
+                    i.e. If you and Mr. A are in same batch in Standard II of XYZ School, then Mr.A. can only see you under
+                    that batch, he will not able to see where you have been in Standard I or in Standard III.
+                </div>
+            </div>
+        </div>
+        <div class="item">
+            <div class="accordion-header">
+                <button class="btn collapsed" type="button" data-toggle="collapse" data-target="#accordion005" aria-expanded="false">
+                    <i class="icon ion-ios-bulb"></i>
+                    What if I would not like to connect to some person even though we are sharing same batch ?
+                </button>
+            </div>
+            <div id="accordion005" class="accordion-body collapse" data-parent="#accordionExample3" style="">
+                <div class="accordion-content">
+                    Until unless both of you are not connected, you can just see name and image of each others.
+                    To see any other connection details or any other social site links, both of you need to accept connection.
+                </div>
+            </div>
+        </div>
+        <div class="item">
+            <div class="accordion-header">
+                <button class="btn collapsed" type="button" data-toggle="collapse" data-target="#accordion006" aria-expanded="false">
+                    <i class="icon ion-ios-bulb"></i>
+                    What if I mistakanly connect with someone or change my mind to connect?
+                </button>
+            </div>
+            <div id="accordion006" class="accordion-body collapse" data-parent="#accordionExample3" style="">
+                <div class="accordion-content">
+                    Once you connected with someone, and you would like to disconnect, you can simply disconnect with that person
+                    using from friends list.
+                </div>
+            </div>
+        </div>
+        <div class="item">
+            <div class="accordion-header">
+                <button class="btn collapsed" type="button" data-toggle="collapse" data-target="#accordion007" aria-expanded="false">
+                    <i class="icon ion-ios-bulb"></i>
+                    Do I get any rewards as other sites do ?
+                </button>
+            </div>
+            <div id="accordion007" class="accordion-body collapse" data-parent="#accordionExample3" style="">
+                <div class="accordion-content">
+                    Connecting with old batchmates is itself an unvaluable precious gift for one.<br/>
+                    Still with the joy of launching such application, we give reward points for your actions in our App.<br/>
+                    Those points can be directly redeem against Cash with PayTm, PhonePay, GPay etc. We don't want our
+                    valuable users to make fool by sharing copouns, so that they need to spend good amount for encashing those 
+                    copouns. To check reward points please check our reward point section.
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -14,5 +14,6 @@ namespace BM4.Models
     public string City { get; internal set; }
     public DateTime StartingDate { get; internal set; }
     public DateTime EndingDate { get; internal set; }
+    public bool HasScope { get; internal set; }
   }
 }
