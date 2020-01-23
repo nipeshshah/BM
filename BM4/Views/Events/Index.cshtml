@@ -33,19 +33,41 @@
                 $.ajax({
                     type: "post",
                     url: "/Events/GetLocations",
-                    data: { cityName: $('#CityId').val() },
+                    data: { cityName: $('#CityId :Selected').val() },
                     datatype: "json",
                     traditional: true,
                     success: function (data) {
+                        debugger;
                         var loc = "<select id='LocationId'>";
                         loc = loc + '<option value="">--Select--</option>';
                         for (var i = 0; i < data.length; i++) {
-                            loc = loc + '<option value=' + data[i].LocationId + '>' + data[i].Text1 + '</option>';
+                            loc = loc + '<option value=' + data[i].MainLocationId + '>' + data[i].Text2 + (data[i].Text3 != null ? ', ' + data[i].Text3 : "") + ', ' +  data[i].Text4 + '</option>';
                         }
                         loc = loc + '</select>';
                         $('#LocationId').html(loc);
                         var selectedLocationId = '@(Model != null ? Model.LocationId.ToString() : "")';
                         $('#LocationId').val(selectedLocationId);
+                    }
+                });
+            });
+
+            $('#LocationId').change(function () {
+                $.ajax({
+                    type: "post",
+                    url: "/Events/GetSubLocations",
+                    data: { cityName: $('#CityId :Selected').val(), LocationId: $('#LocationId :Selected').val()},
+                    datatype: "json",
+                    traditional: true,
+                    success: function (data) {
+                        var loc = "<select id='Location_MainLocationId'>";
+                        loc = loc + '<option value="">--Select--</option>';
+                        for (var i = 0; i < data.length; i++) {
+                            loc = loc + '<option value=' + data[i].LocationId + '>' + data[i].Text1 + '</option>';
+                        }
+                        loc = loc + '</select>';
+                        $('#Location_MainLocationId').html(loc);
+                        var selectedLocationId = '@(Model != null ? Model.LocationId.ToString() : "")';
+                        $('#Location_MainLocationId').val(selectedLocationId);
                     }
                 });
             });
@@ -97,13 +119,22 @@
                     <div class="input-wrapper">
                         @Html.LabelFor(model => model.LocationId, htmlAttributes: new { @class = "control-label col-md-2" })
                         <div class="col-md-10">
-
                             @Html.DropDownListFor(model => model.LocationId, (IEnumerable<SelectListItem>)new List<SelectListItem>(), "--Select--", new { @class = "form-control" })
-
                             @*@Html.DropDownListFor(x => x.LocationNames, new List<SelectListItem>(), "--Select--", new { @id = "ddlDistrict" });*@
-
                             @*@Html.EditorFor(model => model.LocationId, new { htmlAttributes = new { @class = "form-control" } })*@
                             @Html.ValidationMessageFor(model => model.LocationId, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group basic">
+                    <div class="input-wrapper">
+                        @Html.LabelFor(model => model.Location.MainLocationId, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.DropDownListFor(model => model.Location.MainLocationId, (IEnumerable<SelectListItem>)new List<SelectListItem>(), "--Select--", new { @class = "form-control" })
+                            @*@Html.DropDownListFor(x => x.LocationNames, new List<SelectListItem>(), "--Select--", new { @id = "ddlDistrict" });*@
+                            @*@Html.EditorFor(model => model.LocationId, new { htmlAttributes = new { @class = "form-control" } })*@
+                            @Html.ValidationMessageFor(model => model.Location.MainLocationId, "", new { @class = "text-danger" })
                         </div>
                     </div>
                 </div>

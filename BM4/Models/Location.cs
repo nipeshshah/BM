@@ -37,5 +37,6 @@ namespace BM4.Models
         public string Text3 { get; set; }
 
         public string Text4 { get; set; }
+        public string LocationType { get; internal set; }
     }
 }

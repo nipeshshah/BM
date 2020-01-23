@@ -121,12 +121,24 @@ namespace BM4.Controllers
             if(!string.IsNullOrEmpty(CityName))
             {
                 ApplicationDbContext context = new ApplicationDbContext();
-                var fromDatabaseEF = context.Locations.Where(t => t.MainLocation.City == CityName).OrderBy(t => t.MainLocation.Text2).ThenBy(t => t.Text1).Select(
+                var fromDatabaseEF = context.MainLocations.Where(t => t.City == CityName).OrderBy(t => t.Text2).ToList();
+                return Json(fromDatabaseEF);
+            }
+            return null;
+        }
+
+        [HttpPost]
+        public ActionResult GetSubLocations(string CityName, int LocationId)
+        {
+            if (!string.IsNullOrEmpty(CityName))
+            {
+                ApplicationDbContext context = new ApplicationDbContext();
+                var fromDatabaseEF = context.Locations.Where(t => t.MainLocation.City == CityName && t.MainLocationId == LocationId).OrderBy(t => t.MainLocation.Text2).ThenBy(t => t.Text1).Select(
                     c =>
                     new
                     {
                         c.LocationId,
-                        Text1 = c.Text1 + ", " + c.MainLocation.Text2 + ", " + c.MainLocation.Text3 + ", " + c.MainLocation.Text4
+                        c.Text1
                     }).ToList();
                 return Json(fromDatabaseEF);
             }

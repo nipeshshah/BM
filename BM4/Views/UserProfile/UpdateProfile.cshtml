@@ -42,15 +42,14 @@
     <div class="section full mb-2">
         <div class="wide-block pb-1 pt-1">
             <div class="w3-container w3-padding">
-
                 @Html.ValidationSummary(false, "", new { @class = "text-danger" })
                 @Html.HiddenFor(model => model.UserId)
                 @Html.HiddenFor(model => model.UserName)
                 @Html.HiddenFor(model => model.ProfilePic)
                 <div class="form-group basic">
                     <div class="input-wrapper">
-                        <img src="@Model.ProfilePic" style="width:100%; max-height:150px"/>
-                      <hr/>
+                        <img src="@Model.ProfilePic" style="width:100%; max-height:150px" />
+                        <hr />
                         @Html.LabelFor(model => model.UserName, htmlAttributes: new { @class = "control-label col-md-2" })
                         <div class="col-md-10">
                             <div class="form-control" style="color:gray">
@@ -59,7 +58,6 @@
                         </div>
                     </div>
                 </div>
-
                 <div class="form-group basic">
                     <div class="input-wrapper">
                         @Html.LabelFor(model => model.Title, htmlAttributes: new { @class = "control-label col-md-2" })
@@ -69,7 +67,6 @@
                         </div>
                     </div>
                 </div>
-
                 <div class="form-group basic">
                     <div class="input-wrapper">
                         @Html.LabelFor(model => model.FirstName, htmlAttributes: new { @class = "control-label col-md-2" })
@@ -79,7 +76,6 @@
                         </div>
                     </div>
                 </div>
-
                 <div class="form-group basic">
                     <div class="input-wrapper">
                         @Html.LabelFor(model => model.MiddleName, htmlAttributes: new { @class = "control-label col-md-2" })
@@ -89,7 +85,6 @@
                         </div>
                     </div>
                 </div>
-
                 <div class="form-group basic">
                     <div class="input-wrapper">
                         @Html.LabelFor(model => model.LastName, htmlAttributes: new { @class = "control-label col-md-2" })
@@ -99,7 +94,15 @@
                         </div>
                     </div>
                 </div>
-
+                <div class="form-group basic">
+                    <div class="input-wrapper">
+                        @Html.LabelFor(model => model.MobileNo, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.MobileNo, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.MobileNo, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
                 <div class="form-group basic">
                     <div class="input-wrapper">
                         @Html.LabelFor(model => model.DateOfBirth, htmlAttributes: new { @class = "control-label col-md-2" })
@@ -111,7 +114,6 @@
                         </div>
                     </div>
                 </div>
-
                 <div class="form-group basic">
                     <div class="input-wrapper">
                         @Html.LabelFor(model => model.ProfileImage, htmlAttributes: new { @class = "control-label col-md-2" })
@@ -120,7 +122,6 @@
                         </div>
                     </div>
                 </div>
-
                 <div class="form-group basic">
                     <div class="input-wrapper">
                         @Html.LabelFor(model => model.City, htmlAttributes: new { @class = "control-label col-md-2" })
@@ -130,7 +131,6 @@
                         </div>
                     </div>
                 </div>
-
                 <div class="form-group basic">
                     <div class="input-wrapper">
                         <div class="col-md-offset-2 col-md-10">

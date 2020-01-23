@@ -20,16 +20,11 @@ namespace BM4.Code
                 if (context.UserProfiles.Count(t => t.UserName == User.Identity.Name) > 0)
                 {
                     profile = context.UserProfiles.Where(t => t.UserName == User.Identity.Name).First();
-                    ////string UserId = context.Users.Where(t => t.UserName == User.Identity.Name).First().Id;
-
-
-                    //ViewBag.UserTitle = profile.Title;
-                    //ViewBag.ProfilePic = profile.ProfilePic;
                 }
                 else
                 {
-          string userId = User.Identity.GetUserId();
-          profile = context.UserProfiles.Add(new UserProfile()
+                    string userId = User.Identity.GetUserId();
+                    profile = context.UserProfiles.Add(new UserProfile()
                     {
                         UserId = userId,
                         UserName = User.Identity.Name,
@@ -37,7 +32,7 @@ namespace BM4.Code
                         DateOfRegistration = DateTime.UtcNow
                     });
                     context.SaveChanges();
-                }                
+                }
             }
             return profile;
         }

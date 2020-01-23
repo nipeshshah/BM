@@ -48,17 +48,7 @@
                 </div>
 
                 <section style="display:none" class="sectionBlock school">
-                    <div class="form-group basic">
-                        <div class="input-wrapper">
-                            @Html.LabelFor(model => model.Standard)
-                            <div class="col-md-10">
-                                @Html.EditorFor(model => model.Standard, new { htmlAttributes = new { @class = "form-control" } })
-                                @Html.ValidationMessageFor(model => model.Standard, "", new { @class = "text-danger" })
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="form-group basic">
+                   <div class="form-group basic">
                         <div class="input-wrapper">
                             @Html.LabelFor(model => model.SchoolName)
                             <div class="col-md-10">
@@ -80,17 +70,6 @@
 
                 </section>
                 <section style="display:none" class="sectionBlock college">
-
-                    <div class="form-group basic">
-                        <div class="input-wrapper">
-                            @Html.LabelFor(model => model.SemesterYear)
-                            <div class="col-md-10">
-                                @Html.EditorFor(model => model.SemesterYear, new { htmlAttributes = new { @class = "form-control" } })
-                                @Html.ValidationMessageFor(model => model.SemesterYear, "", new { @class = "text-danger" })
-                            </div>
-                        </div>
-                    </div>
-
                     <div class="form-group basic">
                         <div class="input-wrapper">
                             @Html.LabelFor(model => model.CourseFaculty)
@@ -122,17 +101,6 @@
                     </div>
                 </section>
                 <section style="display:none" class="sectionBlock company">
-
-                    <div class="form-group basic">
-                        <div class="input-wrapper">
-                            @Html.LabelFor(model => model.Department)
-                            <div class="col-md-10">
-                                @Html.EditorFor(model => model.Department, new { htmlAttributes = new { @class = "form-control" } })
-                                @Html.ValidationMessageFor(model => model.Department, "", new { @class = "text-danger" })
-                            </div>
-                        </div>
-                    </div>
-
                     <div class="form-group basic">
                         <div class="input-wrapper">
                             @Html.LabelFor(model => model.Company)
@@ -145,17 +113,6 @@
 
                 </section>
                 <section style="display:none" class="sectionBlock classes">
-
-                    <div class="form-group basic">
-                        <div class="input-wrapper">
-                            @Html.LabelFor(model => model.Batches)
-                            <div class="col-md-10">
-                                @Html.EditorFor(model => model.Batches, new { htmlAttributes = new { @class = "form-control" } })
-                                @Html.ValidationMessageFor(model => model.Batches, "", new { @class = "text-danger" })
-                            </div>
-                        </div>
-                    </div>
-
                     <div class="form-group basic">
                         <div class="input-wrapper">
                             @Html.LabelFor(model => model.Subject)

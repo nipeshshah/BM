@@ -42,11 +42,12 @@ namespace BM4.Models
         [DisplayName("City")]
         public string City { get; set; }
 
-        [DisplayName("Referral Code")]
-        public string ReferralCode { get; set; }
-
         [DisplayName("User Name")]
         public string UserName { get; set; }
+
+        [DisplayName("Mobile No")]
+        public string MobileNo { get; set; }
+
 
         [NotMapped]
         public virtual List<UserConnections> UserConnections { get; set; }

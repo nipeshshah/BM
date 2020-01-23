@@ -26,10 +26,19 @@ namespace BM4.Models
         public string CityId { get; set; }
 
         [Required]
+        [ForeignKey("Location")]
         [DisplayName("Select Location")]
         public int LocationId { get; set; }
 
         public virtual Location Location { get; set; }
+
+        //[Required]
+        //[ForeignKey("MainLocationId")]
+        //[DisplayName("Select Main Location")]
+        //public int MainLocationId { get; set; }
+
+        //public virtual MainLocation MainLocation { get; set; }
+
 
         [Required]
         [DisplayName("Select Starting Date")]

@@ -34,7 +34,7 @@ namespace BM4.Models
             return new ApplicationDbContext();
         }
 
-        public System.Data.Entity.DbSet<BM4.Models.LocationType> LocationTypes { get; set; }
+        //public System.Data.Entity.DbSet<BM4.Models.LocationType> LocationTypes { get; set; }
         public System.Data.Entity.DbSet<BM4.Models.Location> Locations { get; set; }
         public System.Data.Entity.DbSet<BM4.Models.MainLocation> MainLocations { get; set; }
                                           
